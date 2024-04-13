@@ -24,8 +24,8 @@ function start() {
             const req = JSON.parse(message.toString())
             if (req.event == 'connect') {
                 // Если в этом req поле event == 'connect', то мы инициализируем новую игру с username-клиентом
-                wsClient.nickname = req.playroad.username
-                initGames(wsClient, req.playroad.gameId)
+                wsClient.nickname = req.payload.username
+                initGames(wsClient, req.payload.gameId)
             }
     
             // broadcast(req)
@@ -72,8 +72,40 @@ function start() {
         }
     }
 
-    function broadcast() {
+    function broadcast(params) {
         // Тут мы будет отправлять каждому подключенному клиенту ответ в зависимости от "состояния" клиента
+
+        //TODO: у клиента будет 4 состояния + деффолтное. В зависимости от этих состояний функция broadcast будет формировать ответ клиенту
+
+        let res
+        const {username, gameId} = params.payload
+        games[gameId].forEach(client => {
+            switch (params.event) {
+                case 'connect': 
+                    res = {
+                        type: "connectToPlay",
+                        payload: {
+                            success: true,
+                            rivalName: games[gameId].find(user => user.nickname !== client.nickname)?.nickname,
+                            username: client.nickname
+                        }
+                    }
+                    break
+                case 'ready': 
+                    res = {type: 'readyToPlay', payload: params.payload}
+                    break
+                case 'shoot':
+                    res = {type: 'afterShootByMe'}
+                    break
+                case 'checkShoot':
+                    res = {type: 'isPerfectHit', payload: params.payload}
+                    break;
+                default: 
+                    res = {type: 'logout', payload: params.payload}
+            }
+            client.send(JSON.stringify(res))
+        });
+
     }
 }
 
