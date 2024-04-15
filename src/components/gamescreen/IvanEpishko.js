@@ -1,10 +1,13 @@
 import YatchukAndrey from "./gamezone/YatchukAndrey"
 import BazevichDavid from "./gamezone/BazevichDavid"
 import BoltrushkoOlga from "./gamezone/BoltrushkoOlga"
+import { Link} from 'react-router-dom';
 
 function IvanEpisko() {
     return (
-        <div>
+        
+        <div className="ivanEpishko">
+            <Link to="/" >Назад</Link>
             <BoltrushkoOlga />
             <YatchukAndrey />
             <BazevichDavid />
@@ -12,4 +15,4 @@ function IvanEpisko() {
     )
 }
 
-export default IvanEpishko
+export default IvanEpisko

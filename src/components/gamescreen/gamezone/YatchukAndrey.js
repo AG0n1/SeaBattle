@@ -1,6 +1,6 @@
 function YatchukAndrey() {
     return (
-        <div className="enemyPlayer">
+        <div className="gamezone" id="enemyPlayer">
             
         </div>
     )
