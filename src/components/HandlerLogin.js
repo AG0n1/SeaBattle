@@ -36,6 +36,12 @@ function HandlerLogin() {
         if (displayConnect === displayCreate || nameInput.value === "") {
             e.preventDefault()
             setDisplayAlert("flex")
+        } else {
+            try {
+                localStorage.setItem("gameId", gameId.toString())
+            } catch(err) {
+                console.log(err)
+            }
         }
     }
 
@@ -84,7 +90,7 @@ function HandlerLogin() {
                 <div id="gameCreationInfo" style={styleConnect}>
                     <input className="inp" placeholder="Введите идентификатор игры" />
                 </div>
-            </div>
+            </div> 
             
             <Link onClick={checkData} className="play" to="play">Играть</Link>
 
