@@ -5,7 +5,7 @@ function HandlerLogin() {
     const [displayCreate, setDisplayCreate] = useState("none")
     const [displayConnect, setDisplayConnect] = useState("none")
     const [displayAlert, setDisplayAlert] = useState("none")
-    const [gameId, setGameId] = useState(generateGameId()); // Инициализируем gameId здесь
+    const [gameId, setGameId] = useState(generateGameId()); 
     const [copied, setCopied] = useState(false);
 
     function generateGameId() {
