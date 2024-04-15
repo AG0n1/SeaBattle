@@ -5,12 +5,22 @@ function HandlerLogin() {
     const [displayCreate, setDisplayCreate] = useState("none")
     const [displayConnect, setDisplayConnect] = useState("none")
     const [displayAlert, setDisplayAlert] = useState("none")
+    const [gameId, setGameId] = useState(generateGameId()); // Инициализируем gameId здесь
+    const [copied, setCopied] = useState(false);
+
+    function generateGameId() {
+        const symbols = ['1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','g','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        let gameId = "";
+        for (let i = 0; i < 16; i++) {
+            gameId += symbols[Math.floor(Math.random() * 36)];
+        }
+        return gameId;
+    }
 
     const openCreate = () => {
         if (displayConnect === "block") {
             setDisplayConnect("none")
         }
-       
         setDisplayCreate("block")
     }
 
@@ -23,7 +33,7 @@ function HandlerLogin() {
 
     const checkData = (e) => {
         const nameInput = document.getElementById("nameInput")
-        if (displayConnect == displayCreate || nameInput.value == "") {
+        if (displayConnect === displayCreate || nameInput.value === "") {
             e.preventDefault()
             setDisplayAlert("flex")
         }
@@ -44,7 +54,6 @@ function HandlerLogin() {
     const styleAlert = {
         display: displayAlert
     }
-    
 
     return (
         <div className="HandlerLogin">
@@ -59,8 +68,18 @@ function HandlerLogin() {
             
             <div className="space">
                 <div id="gameIdInput" style={styleCreate}>
-                    Ура!
+                    {copied ? (
+                        <span id="spanForGameId">
+                            {gameId}
+                            <div className="copiedText">Скопировано</div>
+                        </span>
+                    ) : (
+                        <span onClick={() => { navigator.clipboard.writeText(gameId); setCopied(true); }}>
+                            {gameId}
+                        </span>
+                    )}
                 </div>
+
 
                 <div id="gameCreationInfo" style={styleConnect}>
                     <input className="inp" placeholder="Введите идентификатор игры" />
@@ -71,7 +90,7 @@ function HandlerLogin() {
 
             <div className="alert" style={styleAlert}>
                 <div className="alertBlock" onClick={closeAlert}>
-                    Вам нужно выбрать: присоединиться или создать игру?
+                    Вам нужно ввести своё имя или выбрать: присоединиться или создать игру?
                 </div>
             </div>
         </div>
