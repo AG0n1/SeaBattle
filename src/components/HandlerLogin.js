@@ -10,6 +10,7 @@ function HandlerLogin() {
         if (displayConnect === "block") {
             setDisplayConnect("none")
         }
+       
         setDisplayCreate("block")
     }
 
@@ -21,7 +22,8 @@ function HandlerLogin() {
     }
 
     const checkData = (e) => {
-        if (displayConnect == displayCreate) {
+        const nameInput = document.getElementById("nameInput")
+        if (displayConnect == displayCreate || nameInput.value == "") {
             e.preventDefault()
             setDisplayAlert("flex")
         }
@@ -49,23 +51,22 @@ function HandlerLogin() {
             <div className="LoginTitle">
                 Login
             </div>
-            <input type="text" className="inp" id="nameInput" required/>
+            <input placeholder="Введите Ваше имя" type="text" className="inp" id="nameInput" required/>
 
-            <div className="chooseText" >
-                Выберите действие
-            </div>
 
             <button className="btn reateGame" onClick={openCreate} >Создать игру</button>
             <button className="btn joinGame" onClick={openConnect}>Подключиться к существующей игре</button>
+            
+            <div className="space">
+                <div id="gameIdInput" style={styleCreate}>
+                    Ура!
+                </div>
 
-            <div id="gameIdInput" style={styleCreate}>
-                Ура!
+                <div id="gameCreationInfo" style={styleConnect}>
+                    <input className="inp" placeholder="Введите идентификатор игры" />
+                </div>
             </div>
-
-            <div id="gameCreationInfo" style={styleConnect}>
-                <input className="inp" placeholder="Введите идентификатор игры" />
-            </div>
-
+            
             <Link onClick={checkData} className="play" to="play">Играть</Link>
 
             <div className="alert" style={styleAlert}>
