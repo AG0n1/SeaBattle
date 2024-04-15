@@ -16,7 +16,7 @@ function HandlerLogin() {
         }
         return gameId;
     }
-
+ 
     const openCreate = () => {
         if (displayConnect === "block") {
             setDisplayConnect("none")
