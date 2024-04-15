@@ -49,7 +49,7 @@ function HandlerLogin() {
             <div className="LoginTitle">
                 Login
             </div>
-            <input type="text" className="inp" id="nameInput" required/><br/><br/>
+            <input type="text" className="inp" id="nameInput" required/>
 
             <div className="chooseText" >
                 Выберите действие
