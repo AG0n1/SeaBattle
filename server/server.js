@@ -11,7 +11,6 @@ _________________________________________________________________________
 |_______________________________________________________________________|
 */
 
-
 function start() {
     const ws = new WebSocket.WebSocketServer({port: PORT}, () => {
         console.log(`WebSocket server is running on port 3001`)

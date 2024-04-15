@@ -1,4 +1,7 @@
 function HandlerLogin() {
+    const style = {
+        display: "none"
+    }
     return (
         <div className="HandlerLogin">
             <label htmlFor="nameInput">Имя</label>
@@ -10,12 +13,12 @@ function HandlerLogin() {
             <input type="radio" id="joinGame" required/>
             <label htmlFor="joinGame">Подключиться к существующей игре</label><br/><br/>
 
-            <div id="gameIdInput" style="display: none;">
+            <div id="gameIdInput" style={style}>
                 <label htmlFor="gameId">Введите GameID:</label>
                 <input type="text" id="gameId" /><br/><br/>
             </div>
 
-            <div id="gameCreationInfo" style="display: none;">
+            <div id="gameCreationInfo" style={style}>
                 <p>Ура</p>
             </div>
 
