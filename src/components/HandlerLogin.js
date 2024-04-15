@@ -16,7 +16,7 @@ function HandlerLogin() {
         }
         return gameId;
     }
- 
+
     const openCreate = () => {
         if (displayConnect === "block") {
             setDisplayConnect("none")
@@ -71,7 +71,7 @@ function HandlerLogin() {
 
             <button className="btn reateGame" onClick={openCreate} >Создать игру</button>
             <button className="btn joinGame" onClick={openConnect}>Подключиться к существующей игре</button>
-            
+
             <div className="space">
                 <div id="gameIdInput" style={styleCreate}>
                     {copied ? (
@@ -91,7 +91,7 @@ function HandlerLogin() {
                     <input className="inp" placeholder="Введите идентификатор игры" />
                 </div>
             </div> 
-            
+
             <Link onClick={checkData} className="play" to="play">Играть</Link>
 
             <div className="alert" style={styleAlert}>

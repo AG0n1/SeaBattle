@@ -7,10 +7,10 @@ function IvanEpisko() {
     return (
         
         <div className="ivanEpishko">
-            <Link to="/" >Назад</Link>
+            <Link className="back" to="/" >Назад</Link>
             <BoltrushkoOlga />
             <YatchukAndrey />
-            <BazevichDavid />
+            {/*<BazevichDavid />*/}
         </div>
     )
 }
