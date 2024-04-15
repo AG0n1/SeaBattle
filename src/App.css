@@ -6,3 +6,29 @@
   border: 0;
   box-sizing: border-box;
 }
+
+.HandlerLogin {
+  width: 100%;
+  HEIGHT: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inp {
+  padding-left: 20px;
+  width: 500px;
+  height: 60px;
+  border: 1px solid;
+  border-radius: 30px;
+  font-size: 20px;
+}
+
+.btn {
+  font-size: 20px;
+  width: 400px;
+  height: 60px;
+  border-radius: 10px;
+  margin: 10px;
+}

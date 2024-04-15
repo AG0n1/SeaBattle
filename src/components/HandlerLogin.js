@@ -1,28 +1,49 @@
+import { useState } from "react";
+
 function HandlerLogin() {
-    const style = {
-        display: "none"
+    
+
+    const [displayCreate, setDisplayCreate] = useState("none")
+    const [displayConnect, setDisplayConnect] = useState("none")
+    const openCreate = () => {
+        if (displayConnect === "block") {
+            setDisplayConnect("none")
+        }
+        setDisplayCreate("block")
+    }
+    const openConnect = () => {
+        if (displayCreate === "block") {
+            setDisplayCreate("none")
+        }
+        setDisplayConnect("block")
+    }
+    const styleCreate = {
+        display: displayCreate
+    }
+    const styleConnect = {
+        display: displayConnect
     }
     return (
         <div className="HandlerLogin">
-            <label htmlFor="nameInput">Имя</label>
-            <input type="text" id="nameInput" required/><br/><br/>
+            <div className="LoginTitle">
+                Login
+            </div>
+            <input type="text" className="inp" id="nameInput" required/><br/><br/>
 
-            <label>Выберите действие:</label><br/>
-            <input type="radio" id="createGame" required/>
-            <label htmlFor="createGame">Создать игру</label><br/>
-            <input type="radio" id="joinGame" required/>
-            <label htmlFor="joinGame">Подключиться к существующей игре</label><br/><br/>
-
-            <div id="gameIdInput" style={style}>
-                <label htmlFor="gameId">Введите GameID:</label>
-                <input type="text" id="gameId" /><br/><br/>
+            <div className="chooseText" >
+                Выберите действие
             </div>
 
-            <div id="gameCreationInfo" style={style}>
-                <p>Ура</p>
+            <button className="btn reateGame" onClick={openCreate} >Создать игру</button>
+            <button className="btn joinGame" onClick={openConnect}>Подключиться к существующей игре</button>
+
+            <div id="gameIdInput" style={styleCreate}>
+                Ура!
             </div>
 
-            <button type="submit">Зарегистрироваться</button>
+            <div id="gameCreationInfo" style={styleConnect}>
+                <input className="inp" placeholder="Введите идентификатор игры" />
+            </div>
         </div>
     );
 }
