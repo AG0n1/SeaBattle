@@ -7,9 +7,9 @@ function BazevichDavid() {
     return (
         <div className="shipsField">
             <EletsDarya />
-            <GorbachMaria />
             <PavlushkoPolina />
             <YadlovskayaYulia />
+            <GorbachMaria />
         </div>
     )
 }

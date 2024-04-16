@@ -8,8 +8,8 @@ function IvanEpisko() {
         
         <div className="ivanEpishko">
             <Link className="back" to="/" >Назад</Link>
-            <BoltrushkoOlga />
             <YatchukAndrey />
+            <BoltrushkoOlga />
             <BazevichDavid />
         </div>
     )
