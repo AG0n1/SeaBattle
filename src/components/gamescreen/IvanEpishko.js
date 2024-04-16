@@ -10,7 +10,7 @@ function IvanEpisko() {
             <Link className="back" to="/" >Назад</Link>
             <BoltrushkoOlga />
             <YatchukAndrey />
-            {/*<BazevichDavid />*/}
+            <BazevichDavid />
         </div>
     )
 }
