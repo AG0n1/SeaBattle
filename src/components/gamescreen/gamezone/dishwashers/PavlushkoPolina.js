@@ -1,6 +1,6 @@
 function PavlushkoPolina() {
     return (
-        <div className="doubles">
+        <div className="ship-section doubles">
             
         </div>
     )

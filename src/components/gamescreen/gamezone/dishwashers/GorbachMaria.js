@@ -1,6 +1,6 @@
 function GorbachMaria() {
     return (
-        <div className="quads">
+        <div className="ship-section quads">
             
         </div>
     )

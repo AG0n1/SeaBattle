@@ -1,6 +1,6 @@
 function EletsDarya() {
     return (
-        <div className="singles">
+        <div className="ship-section singles">
             
         </div>
     )

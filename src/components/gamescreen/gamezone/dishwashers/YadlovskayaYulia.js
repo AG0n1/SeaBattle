@@ -1,6 +1,6 @@
 function YadlovskayaYulia() {
     return (
-        <div className="triples">
+        <div className="ship-section triples">
             
         </div>
     )
