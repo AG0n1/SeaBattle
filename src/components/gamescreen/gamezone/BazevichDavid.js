@@ -6,9 +6,9 @@ import YadlovskayaYulia from "./dishwashers/YadlovskayaYulia"
 function BazevichDavid() {
     return (
         <div className="shipsField">
+            <YadlovskayaYulia />
             <EletsDarya />
             <PavlushkoPolina />
-            <YadlovskayaYulia />
             <GorbachMaria />
         </div>
     )

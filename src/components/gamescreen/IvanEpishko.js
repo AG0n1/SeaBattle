@@ -7,7 +7,7 @@ function IvanEpisko() {
     return (
         
         <div className="playy">
-            {/* <Link className="back" to="/" >Назад</Link> */}
+            <Link className="back" to="/" >Назад</Link>
             <div className="ivanEpishko">
                 <YatchukAndrey />
                 <BoltrushkoOlga />
