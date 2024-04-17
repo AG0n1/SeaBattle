@@ -8,13 +8,13 @@ function YatchukAndrey() {
     <div className="gamezone" id="currentPlayer">
       <div className="cell"></div>
       {columns.map((col) => (
-        <div key={col} className="cell cord">
+        <div draggable="false" key={col} className="cell cord">
           {col}
         </div>
       ))}
       {rows.map((row, rowIndex) => (
         <React.Fragment key={row}>
-          <div className="cell cord">{row}</div>
+          <div draggable="false" className="cell cord">{row}</div>
           {columns.map((col, colIndex) => (
             <div key={`${rowIndex}${colIndex}`} onClick={(e) => {
               e.target.style.background = "green"
