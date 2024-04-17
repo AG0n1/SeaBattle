@@ -30,7 +30,11 @@ function YatchukAndrey() {
               }}
               className="hov cell" 
               id={`${rowIndex + 1}${col}`}>
-              {/* You can add content here if needed */}
+
+              {
+
+              }
+              
             </div>
           ))}
         </React.Fragment>
