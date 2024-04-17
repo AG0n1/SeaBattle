@@ -15,7 +15,7 @@ function BoltrushkoOlga() {
   };
 
   return (
-    <div className="gamezone" id="currentPlayer">
+    <div className="gamezone" id="enemyPlayer">
       <div className="cell"></div>
       {columns.map((col) => (
         <div key={col} className="cell cord">

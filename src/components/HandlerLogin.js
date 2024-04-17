@@ -92,7 +92,7 @@ function HandlerLogin() {
                 </div>
             </div> 
 
-            <Link onClick={checkData} className="play" to="play">Играть</Link>
+            <Link onClick={checkData} className="play" to="setShips">Играть</Link>
 
             <div className="alert" style={styleAlert}>
                 <div className="alertBlock" onClick={closeAlert}>

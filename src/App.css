@@ -154,7 +154,7 @@ html {
 }
 
 .hov {
-  box-shadow: 0px 0px 10px black inset;
+  box-shadow: 0px 0px 5px rgb(23, 23, 23) inset;
 }
 
 .gamezone {
@@ -181,18 +181,35 @@ html {
   font-size: 24px;
 }
 
-.shipsField {
-  height: 200px;
-  width: 100%;
+.setShips {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(1, 0, 25);
+}
+
+.shipsField {
+  height: 100vh;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
-  background-color: #9090f8;
+  box-shadow: 10px 0px 100px rgb(58, 0, 0) inset;
 }
 
 .ship-section {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
-  width: 23%;
+  width: 100%;
+}
+
+.setField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 100vh;
 }

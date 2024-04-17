@@ -12,9 +12,6 @@ function IvanEpisko() {
                 <YatchukAndrey />
                 <BoltrushkoOlga />
             </div>
-            
-            
-            <BazevichDavid />
         </div>
         
     )
