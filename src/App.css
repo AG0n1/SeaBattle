@@ -151,10 +151,13 @@ html {
   align-items: center;
   background-size: cover;
   background-position: center;
+  user-select: none;
+  background-color: rgb(15, 12, 40);
+  border: 1px solid rgb(29, 26, 63);
 }
 
 .cord {
-  background: rgb(255, 94, 94);
+  background: rgb(175, 175, 255);
 }
 
 .hov {
@@ -168,7 +171,6 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
 }
 
 .back {
