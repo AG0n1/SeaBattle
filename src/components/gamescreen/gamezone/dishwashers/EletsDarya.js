@@ -12,6 +12,7 @@ function EletsDarya() {
             <div className="doubles">
                 <img src = {logo} />
             </div>
+            
         </div>
     )
 }

@@ -5,6 +5,7 @@
   padding: 0;
   border: 0;
   box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
 }
 
 /* Handler Login */
@@ -27,8 +28,11 @@ html {
 }
 
 .LoginTitle {
-  font-size: 40px;
-  height: 100px;
+  font-size: 100px;
+  height: 140px;
+  color: white;
+  -webkit-text-stroke: 5px black;
+  font-weight: bold;
 }
 
 #nameInput {
@@ -73,11 +77,11 @@ html {
 
   width: 300px;
   height: 80px;
-  border: 10px solid;
+  border: 2px solid;
   border-radius: 40px;
   background-color: red;
   color: white;
-  font-size: 20px;
+  font-size: 28px;
   text-decoration: none;
 }
 
@@ -158,6 +162,7 @@ html {
 }
 
 .gamezone {
+  position: relative;
   width: 550px;
   height: 550px;
   display: flex;
@@ -260,6 +265,15 @@ img {
   height: 100vh;
 }
 
-/*
-Zhenya lox
-*/
+#box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0px 0px 10px green inset;
+}
+
+.displayNone {
+  display: none;
+}
