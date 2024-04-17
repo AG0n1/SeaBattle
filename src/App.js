@@ -14,7 +14,7 @@ function App() {
         <Route path="play" element = {<IvanEpishko />}/>
       </Routes>
     </BrowserRouter>
-    
+    //test
   );
 }
 
