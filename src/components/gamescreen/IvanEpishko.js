@@ -6,12 +6,17 @@ import { Link} from 'react-router-dom';
 function IvanEpisko() {
     return (
         
-        <div className="ivanEpishko">
-            <Link className="back" to="/" >Назад</Link>
-            <YatchukAndrey />
-            <BoltrushkoOlga />
+        <div className="playy">
+            {/* <Link className="back" to="/" >Назад</Link> */}
+            <div className="ivanEpishko">
+                <YatchukAndrey />
+                <BoltrushkoOlga />
+            </div>
+            
+            
             <BazevichDavid />
         </div>
+        
     )
 }
 

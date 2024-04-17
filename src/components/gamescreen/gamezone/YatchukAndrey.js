@@ -8,15 +8,15 @@ function YatchukAndrey() {
     <div className="gamezone" id="enemyPlayer">
       <div className="cell"></div>
       {columns.map((col) => (
-        <div key={col} className="cell">
+        <div key={col} className="cell cord">
           {col}
         </div>
       ))}
       {rows.map((row, rowIndex) => (
         <React.Fragment key={row}>
-          <div className="cell">{row}</div>
+          <div className="cell cord">{row}</div>
           {columns.map((col, colIndex) => (
-            <div key={`${rowIndex}${colIndex}`} className="cell" id={`${rowIndex + 1}${col}`}>
+            <div key={`${rowIndex}${colIndex}`} className="hov cell" id={`${rowIndex + 1}${col}`}>
               {/* You can add content here if needed */}
             </div>
           ))}
