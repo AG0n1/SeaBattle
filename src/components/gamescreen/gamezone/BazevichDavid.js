@@ -4,6 +4,11 @@ import PavlushkoPolina from "./dishwashers/PavlushkoPolina"
 import YadlovskayaYulia from "./dishwashers/YadlovskayaYulia"
 
 function BazevichDavid() {
+
+    let dragEvent = (id) => {
+        console.log(1)
+    }
+
     return (
         <div className="shipsField">
             <YadlovskayaYulia />

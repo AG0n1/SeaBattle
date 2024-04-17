@@ -1,13 +1,17 @@
-let arr = [1,2,2,3,3,4,5,5,5,6,7,7]
+Array.prototype.min = function() {
+    return Math.min.apply(null, this);
+};
 
-function newArr() {
-    let arrTwo = []
-    arr.forEach(elem => {
-        if (arr.indexOf(elem) === arr.lastIndexOf(elem)) {
-            arrTwo.push(elem)
+function cakes(recipe, available) {
+    let numbers = []
+    for (let i in recipe) {
+        if (available[i] !== undefined) {
+            numbers.push(Math.floor(available[i] / recipe[i])) 
+        } else {
+            return 0
         }
-    })
-    return arrTwo
+    }
+    return numbers.min()
 }
 
-console.log(newArr())
+  console.log(cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000}))
