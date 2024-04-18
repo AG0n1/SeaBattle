@@ -31,7 +31,7 @@ html {
   font-size: 100px;
   height: 140px;
   color: white;
-  -webkit-text-stroke: 5px black;
+  -webkit-text-stroke: 5px #000000;
   font-weight: bold;
 }
 
@@ -128,7 +128,6 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-around;
-
   height: 80vh;
 }
 
@@ -171,6 +170,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 150px;
 }
 
 .back {
