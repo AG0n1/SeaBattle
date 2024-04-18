@@ -166,11 +166,13 @@ html {
 
 .gamezone {
   position: relative;
-  width: 550px;
-  height: 550px;
+  width: 570px;
+  height: 570px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  border: 10px solid rgb(29, 26, 63);
+
 }
 
 .back {
@@ -202,7 +204,9 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  box-shadow: 10px 0px 20px rgb(60, 138, 176) inset;
+  //box-shadow: 10px 0px 20px rgb(29, 26, 63) inset;
+  border: 10px solid rgb(29, 26, 63);
+  background-color: rgb(15, 11, 37);
 }
 
 .ship-section {
@@ -216,11 +220,12 @@ html {
 
 .ship-section:hover {
   transition: .2s;
-  box-shadow: 0px 0px 20px rgb(60, 138, 176) inset;
+  box-shadow: 0px 0px 20px #9090f8 inset;
 }
 
 img {
-  cursor:grab
+  cursor:grab;
+  user-select: none;
 }
 
 .single {
