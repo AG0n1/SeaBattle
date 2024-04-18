@@ -195,7 +195,9 @@ html {
   justify-content: space-between;
   width: 100%;
   height: 100vh;
-  background-color: rgb(1, 0, 25);
+  background-image: url(./components/gamescreen/gamezone/img/setShip.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 .shipsField {
@@ -207,6 +209,7 @@ html {
   box-shadow: 10px 0px 20px rgb(29, 26, 63) inset;
   border: 10px solid rgb(29, 26, 63);
   background-color: rgb(15, 11, 37);
+
 }
 
 .ship-section {
@@ -274,6 +277,7 @@ img {
 
 #box {
   position: absolute;
+  display: none;
   top: 50px;
   left: 50px;
   width: 200px;
