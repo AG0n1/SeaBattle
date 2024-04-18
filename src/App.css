@@ -170,7 +170,7 @@ html {
   height: 550px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .back {
@@ -269,13 +269,24 @@ img {
 
 #box {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: 100px;
-  box-shadow: 0px 0px 10px green inset;
+  top: 50px;
+  left: 50px;
+  width: 200px;
+  height: 150px;
+  transition: .3s;
+  background-color: transparent;
 }
 
 .displayNone {
   display: none;
+}
+
+.onDrag {
+  display: flex;;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 550px;
+  height: 550px;
+  z-index: 1000;
 }
