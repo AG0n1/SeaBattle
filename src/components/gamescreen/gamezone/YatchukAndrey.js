@@ -29,7 +29,7 @@ function YatchukAndrey() {
 
   const handleCellDrop = (e) => {
     e.preventDefault();
-    e.target.style.boxShadow = "0px 0px 5px rgb(23, 23, 23) inset";
+    e.target.style.boxShadow = "0px 0px 50px rgb(23, 23, 23) inset";
 
     let numberCell = document.getElementById(`N${e.target.id[1]}`)
     numberCell.style.backgroundColor = 'rgb(175, 175, 255)'
@@ -62,7 +62,7 @@ function YatchukAndrey() {
               onDragOver={(e) => {
                 e.preventDefault();
                 e.target.style.boxShadow = "0px 0px 5px rgb(175, 175, 255) inset";
-                
+
                 let numberCell = document.getElementById(`N${e.target.id[1]}`)
                 numberCell.style.backgroundColor = 'white'
                 let letterCell = document.getElementById(`L${e.target.id[0]}`)
@@ -71,7 +71,7 @@ function YatchukAndrey() {
               onDragLeave={(e) => {
                 e.preventDefault();
                 e.target.style.boxShadow = "0px 0px 5px rgb(23, 23, 23) inset";
-                
+
                 let numberCell = document.getElementById(`N${e.target.id[1]}`)
                 numberCell.style.backgroundColor = 'rgb(175, 175, 255)'
                 let letterCell = document.getElementById(`L${e.target.id[0]}`)
