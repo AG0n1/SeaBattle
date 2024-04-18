@@ -129,6 +129,7 @@ html {
   align-items: center;
   justify-content: space-around;
   height: 80vh;
+  margin-top: 100px;
 }
 
 .copiedText {
@@ -170,7 +171,6 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 150px;
 }
 
 .back {
