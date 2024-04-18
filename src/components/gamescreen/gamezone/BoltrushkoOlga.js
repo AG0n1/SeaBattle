@@ -12,7 +12,7 @@ function BoltrushkoOlga() {
     console.log(res);
     return res;
   };
-
+  
   return (
     <div className="gamezone" id="currentPlayer">
       <div className="cell"></div>
