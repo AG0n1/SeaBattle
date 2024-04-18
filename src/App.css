@@ -204,7 +204,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  //box-shadow: 10px 0px 20px rgb(29, 26, 63) inset;
+  box-shadow: 10px 0px 20px rgb(29, 26, 63) inset;
   border: 10px solid rgb(29, 26, 63);
   background-color: rgb(15, 11, 37);
 }
