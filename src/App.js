@@ -7,14 +7,12 @@ import SetShips from './components/SetShips';
 function App() {
   return (
     <BrowserRouter>
-      
       <Routes>
         <Route path="/" element={<HandlerLogin />} />
         <Route path="setShips" element={<SetShips />} />
         <Route path="play" element = {<IvanEpishko />}/>
       </Routes>
     </BrowserRouter>
-    //test
   );
 }
 
