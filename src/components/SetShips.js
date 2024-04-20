@@ -1,20 +1,16 @@
-import BazevichDavid from "./gamescreen/gamezone/BazevichDavid";
-import YatchukAndrey from "./gamescreen/gamezone/YatchukAndrey";
-import { Link } from "react-router-dom";
-
-function SetShips() {
+import React from 'react';
+import { DragProvider } from './DragContext';
+import YatchukAndrey from './gamescreen/gamezone/YatchukAndrey';
+import BazevichDavid from './gamescreen/gamezone/BazevichDavid';
+function App() {
     return (
-        <div className = "setShips" >
-            <div className="setField">
+        <DragProvider>
+            <div className="setShips">
                 <YatchukAndrey />
+                <BazevichDavid />
             </div>
-            <BazevichDavid />
-
-            <Link style={{position: "absolute", top: "0", left: "0", fontSize: "20px", color: "white"}} to="../play">
-                Далее
-            </Link>
-        </div>
-    )
+        </DragProvider>
+    );
 }
 
-export default SetShips
+export default App;
