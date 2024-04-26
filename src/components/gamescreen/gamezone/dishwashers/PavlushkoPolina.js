@@ -9,9 +9,6 @@ function PavlushkoPolina() {
             <div className="triples">
                 <img src = {logo} />
             </div>
-            <div className="triples">
-                <img src = {logo} />
-            </div>
         </div>
     )
 }
