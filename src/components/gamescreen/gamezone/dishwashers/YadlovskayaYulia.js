@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import logo from "../img/spaceships/single.png";
-import { DragContext } from '../../../DragContext';
 
 function YadlovskayaYulia() {
-    const { handleSetDraggedItem } = useContext(DragContext);
 
     const handleOnDragStart = (e) => {
-        handleSetDraggedItem('single');
+        // handleSetDraggedItem('single');
     }
 
     return (
