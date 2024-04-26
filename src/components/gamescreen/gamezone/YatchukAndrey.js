@@ -34,7 +34,7 @@ function YatchukAndrey() {
         case "double": imgElement.src = double; break;
         case "triple": imgElement.src = triple; break;
         case "ultimate": imgElement.src = ultimate; break;
-        default: imgElement.src = ''; break; // Можно добавить обработку по умолчанию
+        default: imgElement.src = ''; break;
     }
 
     e.target.innerHTML = '';
