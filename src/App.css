@@ -165,14 +165,12 @@ html {
 }
 
 .gamezone {
-  position: relative;
   width: 570px;
   height: 570px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   border: 10px solid rgb(29, 26, 63);
-
 }
 
 .back {
