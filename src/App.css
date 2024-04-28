@@ -15,6 +15,11 @@ html {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  scroll-behavior: unset;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .HandlerLogin {
