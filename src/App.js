@@ -3,11 +3,13 @@ import HandlerLogin from './components/HandlerLogin';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import IvanEpishko from './components/gamescreen/IvanEpishko';
 import SetShips from './components/SetShips';
+import Malenki from "./components/Malenki";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="vidos" element = {<Malenki />}/>
         <Route path="/" element={<HandlerLogin />} />
         <Route path="setShips" element={<SetShips />} />
         <Route path="play" element = {<IvanEpishko />}/>
