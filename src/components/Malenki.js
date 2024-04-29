@@ -1,4 +1,5 @@
 import video from "./video/Intro.mp4"
+import playButton from "./gamescreen/gamezone/img/Button.jpg"
 import IvanEpishko from "./gamescreen/IvanEpishko"
 import {Link} from "react-router-dom";
 
@@ -12,6 +13,7 @@ function Malenki(props) {
     return (
         <div className="video" onclick="this.querySelector('video').play()">
             <video src={video} id="vidos" autoPlay></video>
+            <button className="playButton" onClick={playVideo}><img src={playButton} class="playButtonImage"/>
             <button className="playButton" onClick={playVideo}>
                 <img src="./components/gamescreen/gamezone/img/Button.jpg" />
             </button>
