@@ -343,8 +343,15 @@ video {
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 16px;
   opacity: 0.2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playButtonImage {
+  height: 50px;
+  background-size: cover;
 }
 
 .skipButton:hover {
