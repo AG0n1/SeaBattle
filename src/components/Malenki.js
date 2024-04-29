@@ -13,11 +13,10 @@ function Malenki(props) {
     return (
         <div className="video" onclick="this.querySelector('video').play()">
             <video src={video} id="vidos" autoPlay></video>
-            <button className="playButton" onClick={playVideo}><img src={playButton} class="playButtonImage"/>
             <button className="playButton" onClick={playVideo}>
-                <img src="./components/gamescreen/gamezone/img/Button.jpg" />
+                <img src={playButton} className="playButtonImage"/>
             </button>
-            <Link to="../setShips" className="skipButton">
+            <Link to="../registration" className="skipButton">
                 Skip
             </Link>
         </div>
