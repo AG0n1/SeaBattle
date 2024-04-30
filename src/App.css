@@ -11,7 +11,7 @@
 /* Handler Login */
 
 html {
-  background-image: url(./components/gamescreen/gamezone/img/background.jpg);
+  background-image: url(./components/gamescreen/gamezone/img/background2.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -73,6 +73,7 @@ html {
   justify-content: center;
   align-items: center;
   height: 100px;
+  color: white;
 }
 
 .play {
@@ -138,7 +139,7 @@ html {
 }
 
 .copiedText {
-  color: gray;
+  color: white;
   font-size: 12px;
   width: 320px;
   text-align: center;
