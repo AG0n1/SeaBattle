@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
+import login from "./gamescreen/gamezone/img/Login.png"
 
 function HandlerLogin() {
     const [displayCreate, setDisplayCreate] = useState("none")
@@ -63,13 +64,16 @@ function HandlerLogin() {
 
     return (
         <div className="HandlerLogin">
+            {/*<div className="LoginTitle">*/}
+            {/*    Login*/}
+            {/*</div>*/}
             <div className="LoginTitle">
-                Login
+                <img src={login} className="Login"/>
             </div>
             <input placeholder="Введите Ваше имя" type="text" className="inp" id="nameInput" required/>
 
 
-            <button className="btn reateGame" onClick={openCreate} >Создать игру</button>
+            <button className="btn reateGame" onClick={openCreate}>Создать игру</button>
             <button className="btn joinGame" onClick={openConnect}>Подключиться к существующей игре</button>
 
             <div className="space">
@@ -80,7 +84,10 @@ function HandlerLogin() {
                             <div className="copiedText">Скопировано</div>
                         </span>
                     ) : (
-                        <span onClick={() => { navigator.clipboard.writeText(gameId); setCopied(true); }}>
+                        <span onClick={() => {
+                            navigator.clipboard.writeText(gameId);
+                            setCopied(true);
+                        }}>
                             {gameId}
                         </span>
                     )}
@@ -88,9 +95,9 @@ function HandlerLogin() {
 
 
                 <div id="gameCreationInfo" style={styleConnect}>
-                    <input className="inp" placeholder="Введите идентификатор игры" />
+                    <input className="inp" placeholder="Введите идентификатор игры"/>
                 </div>
-            </div> 
+            </div>
 
             <Link onClick={checkData} className="play" to="../setShips">Играть</Link>
 
