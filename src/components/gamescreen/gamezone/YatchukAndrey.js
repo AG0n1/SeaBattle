@@ -27,13 +27,25 @@ function YatchukAndrey() {
   };
 
   const singleFunc = (e, imgElement, id) => {
+
+    if (doubleCounter == 3) {
+      console.log('Неа')
+      return
+    }
+
     imgElement.src = single;
     e.target.innerHTML = '';
     e.target.appendChild(imgElement);
     setPos((prevPos) => [...prevPos, { type: 'single', x: id[0], y: id[1] }]);
     console.log(pos)
 
-    console.log(doubleHide[doubleCounter])
+    /*
+    doubleHide[doubleCounter].classList.remove('displayNone')
+    doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+    doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    setDouble(doubleCounter + 1)
+    */
+
     doubleHide[doubleCounter].classList.remove('displayNone')
     doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
     doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
@@ -41,29 +53,62 @@ function YatchukAndrey() {
   }
 
   const doubleFunc = (e, imgElement, id) => {
+
+    if (doubleCounter == 3) {
+      console.log('Неа')
+      return
+    }
+
     imgElement.src = double;
     e.target.innerHTML = '';
     e.target.appendChild(imgElement);
     setPos((prevPos) => [...prevPos, { type: 'double', x: id[0], y: id[1] }]);
 
-    
+    doubleHide[doubleCounter].classList.remove('displayNone')
+    doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+    doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    setDouble(doubleCounter + 1)
 
     console.log(pos)
   }
 
   const tripleFunc = (e, imgElement, id) => {
+
+    if (tripleCounter == 2) {
+      console.log('Неа')
+      return
+    }
+
     imgElement.src = triple;
     e.target.innerHTML = '';
     e.target.appendChild(imgElement);
     setPos((prevPos) => [...prevPos, { type: 'triple', x: id[0], y: id[1] }]);
+
+    tripleHide[tripleCounter].classList.remove('displayNone')
+    tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+    tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    setTriple(tripleCounter + 1)
+
     console.log(pos)
   }
 
   const ultimateFunc = (e, imgElement, id) => {
+
+    if (ultimateCounter == 1) {
+      console.log('Неа')
+      return
+    }
+
     imgElement.src = ultimate;
     e.target.innerHTML = '';
     e.target.appendChild(imgElement);
     setPos((prevPos) => [...prevPos, { type: 'ultimate', x: id[0], y: id[1] }]);
+
+    ultimateHide[ultimateCounter].classList.remove('displayNone')
+    ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+    ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    setTriple(tripleCounter + 1)
+
     console.log(pos)
   }
 

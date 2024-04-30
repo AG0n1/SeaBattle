@@ -12,26 +12,26 @@ function YadlovskayaYulia() {
     return (
         <div className="ship-section">
             <Ship.Provider value={<img src={logo} alt="Spaceship" />}>
-                <div className="single" draggable onDragStart={handleOnDragStart}>
-                    <img src={logo} alt="Spaceship" />
+                <div className="single">
+                    <img  draggable onDragStart={handleOnDragStart} src={logo} alt="Spaceship" />
                 </div>
             </Ship.Provider>
 
             <Ship.Provider value={<img src={logo} alt="Spaceship" />}>
-                <div className="single" draggable onDragStart={handleOnDragStart}>
-                    <img src={logo} alt="Spaceship" />
+                <div className="single">
+                    <img draggable onDragStart={handleOnDragStart} src={logo} alt="Spaceship" />
                 </div>
             </Ship.Provider>
 
             <Ship.Provider value={<img src={logo} alt="Spaceship" />}>
-                <div className="single" draggable onDragStart={handleOnDragStart}>
-                    <img src={logo} alt="Spaceship" />
+                <div className="single">
+                    <img draggable onDragStart={handleOnDragStart} src={logo} alt="Spaceship" />
                 </div>
             </Ship.Provider>
 
             <Ship.Provider value={<img src={logo} alt="Spaceship" />}>
-                <div className="single" draggable onDragStart={handleOnDragStart}>
-                    <img src={logo} alt="Spaceship" />
+                <div className="single" >
+                    <img draggable onDragStart={handleOnDragStart} src={logo} alt="Spaceship" />
                 </div>
             </Ship.Provider>        
         </div>
