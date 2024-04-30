@@ -13,6 +13,14 @@ function YatchukAndrey() {
   const [showBox, setShowBox] = useState(false);
   const [pos, setPos] = useState([]);
 
+  const [doubleCounter, setDouble] = useState(0)
+  const [tripleCounter, setTriple] = useState(0)
+  const [ultimateCounter, setUltimate] = useState(0)
+
+  let doubleHide = document.getElementsByClassName('doublePlace')
+  let tripleHide = document.getElementsByClassName('triplePlace')
+  let ultimateHide = document.getElementsByClassName('ultimatePlace')
+
   const handleDragOver = (e) => {
     e.preventDefault();
     setShowBox(true);
@@ -24,6 +32,12 @@ function YatchukAndrey() {
     e.target.appendChild(imgElement);
     setPos((prevPos) => [...prevPos, { type: 'single', x: id[0], y: id[1] }]);
     console.log(pos)
+
+    console.log(doubleHide[doubleCounter])
+    doubleHide[doubleCounter].classList.remove('displayNone')
+    doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+    doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    setDouble(doubleCounter + 1)
   }
 
   const doubleFunc = (e, imgElement, id) => {
@@ -31,6 +45,9 @@ function YatchukAndrey() {
     e.target.innerHTML = '';
     e.target.appendChild(imgElement);
     setPos((prevPos) => [...prevPos, { type: 'double', x: id[0], y: id[1] }]);
+
+    
+
     console.log(pos)
   }
 
@@ -140,6 +157,14 @@ function YatchukAndrey() {
           ))}
         </React.Fragment>
       ))}
+      <div className='displayNone hide doublePlace'></div>
+      <div className='displayNone hide doublePlace'></div>
+      <div className='displayNone hide doublePlace'></div>
+
+      <div className='displayNone triplelace'></div>
+      <div className='displayNone triplePlace'></div>
+
+      <div className='displayNone ultimatePlace'></div>
     </div>
   );
 }
