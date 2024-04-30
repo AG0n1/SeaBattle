@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import login from "./gamescreen/gamezone/img/Login.png"
+import start from "./gamescreen/gamezone/img/Start.png"
 
 function HandlerLogin() {
     const [displayCreate, setDisplayCreate] = useState("none")
@@ -99,7 +100,9 @@ function HandlerLogin() {
                 </div>
             </div>
 
-            <Link onClick={checkData} className="play" to="../setShips">Играть</Link>
+            <Link onClick={checkData} className="play" to="../setShips">
+                <img src={start} className="PlayImg"/>
+            </Link>
 
             <div className="alert" style={styleAlert}>
                 <div className="alertBlock" onClick={closeAlert}>

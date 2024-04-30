@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import YatchukAndrey from './gamescreen/gamezone/YatchukAndrey';
 import BazevichDavid from './gamescreen/gamezone/BazevichDavid';
+import start from "./gamescreen/gamezone/img/Start.png"
+
 function App() {
 
     const [amount, setAmount] = useState(0)
@@ -21,7 +23,9 @@ function App() {
                 <YatchukAndrey />
 
                 <div className='link' id = "makeLinkDNone">
-                    <Link onClick={checkState} className='linkToPlay' to="../../play">Играть</Link>
+                    <Link onClick={checkState} className='linkToPlay' to="../../play">
+                        <img src={start} className="linkToPlayImg" />
+                    </Link>
                 </div>
             </div>      
 
