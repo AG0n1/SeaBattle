@@ -53,16 +53,17 @@ html {
   padding-left: 20px;
   width: 500px;
   height: 60px;
-  border: 1px solid;
+  border: #ffcf10 solid 3px;
   border-radius: 30px;
   font-size: 20px;
 }
 
 .btn {
   font-size: 20px;
-  width: 400px;
+  width: 420px;
   height: 60px;
-  border-radius: 10px;
+  border-radius: 20px;
+  border: #ffcf10 solid 3px;
   margin: 10px;
 }
 
@@ -85,15 +86,23 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  width: 300px;
+  width: 270px;
   height: 80px;
-  border: 2px solid;
-  border-radius: 40px;
-  background-color: red;
+  border-radius: 30px;
+  border: #ffcf10 solid 5px;
+  background-color: black;
   color: white;
   font-size: 28px;
   text-decoration: none;
+}
+
+.PlayImg {
+  height: 43px;
+}
+
+.play:hover {
+  border: #fad350 solid 5px;
+  background-color: #212121;
 }
 
 .play:visited {
@@ -207,13 +216,23 @@ html {
   display: flex;
   justify-content: center;
   align-items: center ;
-  width: 200px;
+  width: 240px;
   height: 80px;
-  background: red;
+  background: black;
   color: white;
   font-size: 20px;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 30px;
+  border: #ffcf10 solid 5px;
+}
+
+.linkToPlayImg {
+  height: 40px;
+}
+
+.linkToPlay:hover {
+  border: #fad350 solid 5px;
+  background-color: #212121;
 }
 
 .back {
