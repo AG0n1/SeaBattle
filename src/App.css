@@ -11,13 +11,11 @@
 /* Handler Login */
 
 html {
-  background-image: url(./components/gamescreen/gamezone/img/background2.webp);
-  background-color: black;
+  background-image: url(./components/gamescreen/gamezone/img/background2.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   scroll-behavior: unset;
-  user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -55,22 +53,17 @@ html {
   padding-left: 20px;
   width: 500px;
   height: 60px;
-  border: #ffcf10 solid 3px;
+  border: 1px solid;
   border-radius: 30px;
   font-size: 20px;
 }
 
 .btn {
   font-size: 20px;
-  width: 420px;
+  width: 400px;
   height: 60px;
-  border-radius: 20px;
-  border: #ffcf10 solid 3px;
+  border-radius: 10px;
   margin: 10px;
-}
-
-.btn:hover {
-  background-color: #c4c3c3;
 }
 
 #gameIdInput {
@@ -92,23 +85,15 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 270px;
+
+  width: 300px;
   height: 80px;
-  border-radius: 30px;
-  border: #ffcf10 solid 5px;
-  background-color: black;
+  border: 2px solid;
+  border-radius: 40px;
+  background-color: red;
   color: white;
   font-size: 28px;
   text-decoration: none;
-}
-
-.PlayImg {
-  height: 43px;
-}
-
-.play:hover {
-  border: #fad350 solid 5px;
-  background-color: #212121;
 }
 
 .play:visited {
@@ -177,13 +162,13 @@ html {
   align-items: center;
   background-size: cover;
   background-position: center;
-  
-  background-color: black;
-  border: 1px solid #564705;
+  user-select: none;
+  background-color: rgb(15, 12, 40);
+  border: 1px solid rgb(29, 26, 63);
 }
 
 .cord {
-  background: #f5da70;
+  background: rgb(175, 175, 255);
 }
 
 .hov {
@@ -197,7 +182,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  border: 10px solid #ffcf10;
+  border: 10px solid rgb(29, 26, 63);
 }
 
 .makeSpace {
@@ -222,23 +207,13 @@ html {
   display: flex;
   justify-content: center;
   align-items: center ;
-  width: 240px;
+  width: 200px;
   height: 80px;
-  background: black;
+  background: red;
   color: white;
   font-size: 20px;
   text-decoration: none;
-  border-radius: 30px;
-  border: #ffcf10 solid 5px;
-}
-
-.linkToPlayImg {
-  height: 40px;
-}
-
-.linkToPlay:hover {
-  border: #fad350 solid 5px;
-  background-color: #212121;
+  border-radius: 10px;
 }
 
 .back {
@@ -247,7 +222,7 @@ html {
   left: 0;
   width: 200px;
   height: 70px;
-  background-color: #ffcf10;
+  background-color: #9090f8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,7 +236,7 @@ html {
   justify-content: space-between;
   width: 100%;
   height: 100vh;
-  background-image: url(./components/gamescreen/gamezone/img/background2.webp);
+  background-image: url(./components/gamescreen/gamezone/img/background2.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -272,9 +247,9 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  box-shadow: 10px 0px 20px black inset;
-  border: 10px solid #ffcf10;
-  background-color: black;
+  box-shadow: 10px 0px 20px rgb(29, 26, 63) inset;
+  border: 10px solid rgb(29, 26, 63);
+  background-color: rgb(15, 11, 37);
 
 }
 
@@ -289,7 +264,7 @@ html {
 
 .ship-section:hover {
   transition: .2s;
-  box-shadow: 0px 0px 20px #f5da70 inset;
+  box-shadow: 0px 0px 20px #9090f8 inset;
 }
 
 img {
@@ -333,18 +308,6 @@ img {
   width: 120px;
 }
 
-.ultimate {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-}
-
-.ultimate > img {
-  height: 150px;
-  width: 210px;
-}
-
 .setField {
   display: flex;
   justify-content: center;
@@ -365,58 +328,18 @@ img {
 }
 
 .hide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   position: absolute;
   border: 2px solid darkgreen;
   box-shadow: 0px 0px 10px green;
-}
-
-.singlePlace {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-}
-
-.singlePlace > img {
-  width: 50px;
-  height: 50px;
 }
 
 .doublePlace {
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 100px;
   height: 50px;
-}
-
-.doublePlace > img {
-  width: 100px;
-}
-
-.triplePlace {
-  width: 150px;
-  height: 50px;
-}
-
-.triplePlace > img {
-  width: 120px;
-  height: 50px;
-}
-
-.ultimatePlace {
-  width: 200px;
-  height: 150px;
-}
-
-.ultimatePlace > img {
-  width: 200px;
-  height: 150px;
 }
 
 .displayNone {
