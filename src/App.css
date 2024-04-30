@@ -284,25 +284,25 @@ img {
   width: 50px
 }
 
-.doubles {
+.double {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 33%;
 }
 
-.doubles > img {
+.double > img {
   width: 100px;
 }
 
-.triples {
+.triple {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50%;
 }
 
-.triples > img {
+.triple > img {
   height: 50px;
   width: 120px;
 }
