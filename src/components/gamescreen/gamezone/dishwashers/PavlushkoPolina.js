@@ -3,10 +3,10 @@ import logo from "../img/spaceships/tripple.png"
 function PavlushkoPolina() {
     return (
         <div className="ship-section">
-            <div className="triples">
+            <div className="triple">
                 <img src = {logo} />
             </div>
-            <div className="triples">
+            <div className="triple">
                 <img src = {logo} />
             </div>
         </div>

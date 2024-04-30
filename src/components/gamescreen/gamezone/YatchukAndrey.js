@@ -23,10 +23,40 @@ function YatchukAndrey() {
     setShowBox(true);
   };
 
-  const singleFunc = (imgElement, id) => {
+  const singleFunc = (e, imgElement, id) => {
     console.log(id)
     setPos({type: 'single'})
     imgElement.src = single;
+    
+    e.target.innerHTML = '';
+    e.target.appendChild(imgElement);
+  }
+
+  const doubleFunc = (e, imgElement, id) => {
+    console.log(id)
+    setPos({type: 'single'})
+    imgElement.src = double;
+    
+    e.target.innerHTML = '';
+    e.target.appendChild(imgElement);
+  }
+
+  const tripleFunc = (e, imgElement, id) => {
+    console.log(id)
+    setPos({type: 'single'})
+    imgElement.src = triple;
+    
+    e.target.innerHTML = '';
+    e.target.appendChild(imgElement);
+  }
+
+  const ultimateFunc = (e, imgElement, id) => {
+    console.log(id)
+    setPos({type: 'single'})
+    imgElement.src = ultimate;
+    
+    e.target.innerHTML = '';
+    e.target.appendChild(imgElement);
   }
 
   const handleDragLeave = (e) => {
@@ -42,19 +72,25 @@ function YatchukAndrey() {
     const imgElement = document.createElement("img");
     imgElement.className = shipType; 
     switch (shipType) {
-        case "single": singleFunc(imgElement, e.target.id);
-        break;
+        case "single": 
+              singleFunc(e, imgElement, e.target.id);
+              break;
 
-        case "double": imgElement.src = double; break;
-        case "triple": imgElement.src = triple; break;
-        case "ultimate": imgElement.src = ultimate; break;
+        case "double": 
+              console.log(1)
+              doubleFunc(e, imgElement, e.target.id)
+              break;
+              
+        case "triple": 
+              tripleFunc(e, imgElement, e.target.id) 
+              break;
+
+        case "ultimate": 
+              ultimateFunc(e, imgElement, e.target.id)
+              break;
         default: imgElement.src = ''; break;
     }
 
-    e.target.innerHTML = '';
-    e.target.appendChild(imgElement);
-
-    console.log(shipType);
   };
 
   const handleCellDrop = (e) => {
