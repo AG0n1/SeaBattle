@@ -68,7 +68,7 @@ function YatchukAndrey() {
     doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
     doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
     setDouble(doubleCounter + 1)
-
+    
     console.log(pos)
   }
 

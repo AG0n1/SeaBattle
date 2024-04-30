@@ -11,7 +11,8 @@
 /* Handler Login */
 
 html {
-  background-image: url(./components/gamescreen/gamezone/img/background2.jpg);
+  background-color: black;
+  background-image: url(./components/gamescreen/gamezone/img/background.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
