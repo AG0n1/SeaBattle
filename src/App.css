@@ -34,10 +34,15 @@ html {
 
 .LoginTitle {
   font-size: 100px;
-  height: 140px;
+  height: 220px;
   color: white;
   -webkit-text-stroke: 5px #000000;
   font-weight: bold;
+}
+
+.Login {
+  height: 100px;
+  margin-top: 50px;
 }
 
 #nameInput {
