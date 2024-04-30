@@ -12,10 +12,22 @@ function YatchukAndrey() {
   const columns = Array.from({ length: 10 }, (_, index) => index);
   const [showBox, setShowBox] = useState(false);
 
+  const [pos, setPos] = useState(
+    [
+      
+    ]
+  )
+
   const handleDragOver = (e) => {
     e.preventDefault();
     setShowBox(true);
   };
+
+  const singleFunc = (imgElement, id) => {
+    console.log(id)
+    setPos({type: 'single'})
+    imgElement.src = single;
+  }
 
   const handleDragLeave = (e) => {
     e.preventDefault();
@@ -30,7 +42,9 @@ function YatchukAndrey() {
     const imgElement = document.createElement("img");
     imgElement.className = shipType; 
     switch (shipType) {
-        case "single": imgElement.src = single; break;
+        case "single": singleFunc(imgElement, e.target.id);
+        break;
+
         case "double": imgElement.src = double; break;
         case "triple": imgElement.src = triple; break;
         case "ultimate": imgElement.src = ultimate; break;
