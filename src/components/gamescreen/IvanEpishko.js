@@ -3,11 +3,12 @@ import BazevichDavid from "./gamezone/BazevichDavid"
 import BoltrushkoOlga from "./gamezone/BoltrushkoOlga"
 import { Link} from 'react-router-dom';
 
-function IvanEpisko(props) {
+function IvanEpisko() {
+
     return (
         <div className="playy">
             <div className="ivanEpishko">
-                <YatchukAndrey singles={1} />
+                <YatchukAndrey display="none"/>
                 <BoltrushkoOlga />
             </div>
         </div>
