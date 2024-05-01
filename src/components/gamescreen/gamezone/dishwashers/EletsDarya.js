@@ -7,27 +7,26 @@ function EletsDarya() {
 
     const handleOnDragStart = (e) => {
         e.dataTransfer.setData("ship", "double");
-        e.dataTransfer.setData("doubleID", e.target.id);
     };
 
     return (
         <div className="ship-section">
             <Ship.Provider value={<img src={logo} alt="Spaceship" />}>
                 <div className="double">
-                    <img draggable onDragStart={handleOnDragStart} src = {logo} id="double0" />
+                    <img draggable onDragStart={handleOnDragStart} src = {logo} />
                 </div>
             </Ship.Provider>
             
             <Ship.Provider value={<img src={logo} alt="Spaceship" />}>
                 <div className="double">
-                    <img draggable onDragStart={handleOnDragStart} src = {logo} id="double1" />
+                    <img draggable onDragStart={handleOnDragStart} src = {logo} />
                 </div>
             </Ship.Provider>
             
 
             <Ship.Provider value={<img src={logo} alt="Spaceship" />}>
                 <div className="double">
-                    <img draggable onDragStart={handleOnDragStart} src = {logo} id="double2" />
+                    <img draggable onDragStart={handleOnDragStart} src = {logo} />
                 </div>
             </Ship.Provider>
             
