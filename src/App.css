@@ -12,6 +12,7 @@
 
 html {
   background-image: url(./components/gamescreen/gamezone/img/background2.webp);
+  background-color: black;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -68,7 +68,6 @@ function YatchukAndrey() {
     doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
     doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
     setDouble(doubleCounter + 1)
-
     console.log(pos)
   }
 
@@ -150,6 +149,7 @@ function YatchukAndrey() {
     numberCell.style.backgroundColor = '#f5da70'
     let letterCell = document.getElementById(`L${e.target.id[0]}`)
     letterCell.style.backgroundColor = '#f5da70'
+
   };
   
   return (
@@ -176,7 +176,6 @@ function YatchukAndrey() {
               onDragOver={(e) => {
                 e.preventDefault();
                 e.target.style.boxShadow = "0px 0px 5px #f5da70 inset";
-
                 let numberCell = document.getElementById(`N${e.target.id[1]}`)
                 numberCell.style.backgroundColor = 'white'
                 let letterCell = document.getElementById(`L${e.target.id[0]}`)
@@ -190,6 +189,7 @@ function YatchukAndrey() {
                 numberCell.style.backgroundColor = '#f5da70'
                 let letterCell = document.getElementById(`L${e.target.id[0]}`)
                 letterCell.style.backgroundColor = '#f5da70'
+
               }}
               onDrop={handleCellDrop}
               className="hov cell" 
