@@ -1,4 +1,7 @@
+import React from "react"
 import logo from "../img/spaceships/ultimate.png"
+
+
 
 function GorbachMaria() {
     return (

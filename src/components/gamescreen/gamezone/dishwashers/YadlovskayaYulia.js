@@ -13,7 +13,7 @@ function YadlovskayaYulia() {
         <div className="ship-section">
             <Ship.Provider value={<img src={logo} alt="Spaceship" />}>
                 <div className="single">
-                    <img  draggable onDragStart={handleOnDragStart} src={logo} alt="Spaceship" />
+                    <img draggable onDragStart={handleOnDragStart} src={logo} alt="Spaceship" />
                 </div>
             </Ship.Provider>
 

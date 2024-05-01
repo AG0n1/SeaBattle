@@ -13,43 +13,32 @@ function YatchukAndrey() {
   const [showBox, setShowBox] = useState(false);
   const [pos, setPos] = useState([]);
 
+  const [singleCounter, setSingle] = useState(0)
   const [doubleCounter, setDouble] = useState(0)
   const [tripleCounter, setTriple] = useState(0)
   const [ultimateCounter, setUltimate] = useState(0)
 
+  let singleHide = document.getElementsByClassName('singlePlace')
   let doubleHide = document.getElementsByClassName('doublePlace')
   let tripleHide = document.getElementsByClassName('triplePlace')
   let ultimateHide = document.getElementsByClassName('ultimatePlace')
 
   const handleDragOver = (e) => {
     e.preventDefault();
-    setShowBox(true);
   };
 
   const singleFunc = (e, imgElement, id) => {
 
-    if (doubleCounter == 3) {
-      console.log('Неа')
+    if (singleCounter === 4) {
       return
     }
 
-    imgElement.src = single;
-    e.target.innerHTML = '';
-    e.target.appendChild(imgElement);
     setPos((prevPos) => [...prevPos, { type: 'single', x: id[0], y: id[1] }]);
-    console.log(pos)
-
-    /*
-    doubleHide[doubleCounter].classList.remove('displayNone')
-    doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
-    doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
-    setDouble(doubleCounter + 1)
-    */
-
-    doubleHide[doubleCounter].classList.remove('displayNone')
-    doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
-    doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
-    setDouble(doubleCounter + 1)
+ 
+    singleHide[singleCounter].classList.remove('displayNone')
+    singleHide[singleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+    singleHide[singleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    setSingle(singleCounter + 1)
   }
 
   const doubleFunc = (e, imgElement, id) => {
@@ -58,17 +47,12 @@ function YatchukAndrey() {
       console.log('Неа')
       return
     }
-
-    imgElement.src = double;
-    e.target.innerHTML = '';
-    e.target.appendChild(imgElement);
     setPos((prevPos) => [...prevPos, { type: 'double', x: id[0], y: id[1] }]);
 
     doubleHide[doubleCounter].classList.remove('displayNone')
     doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
     doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
     setDouble(doubleCounter + 1)
-    console.log(pos)
   }
 
   const tripleFunc = (e, imgElement, id) => {
@@ -77,18 +61,12 @@ function YatchukAndrey() {
       console.log('Неа')
       return
     }
-
-    imgElement.src = triple;
-    e.target.innerHTML = '';
-    e.target.appendChild(imgElement);
     setPos((prevPos) => [...prevPos, { type: 'triple', x: id[0], y: id[1] }]);
 
     tripleHide[tripleCounter].classList.remove('displayNone')
     tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
     tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
     setTriple(tripleCounter + 1)
-
-    console.log(pos)
   }
 
   const ultimateFunc = (e, imgElement, id) => {
@@ -106,9 +84,7 @@ function YatchukAndrey() {
     ultimateHide[ultimateCounter].classList.remove('displayNone')
     ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50)}px`
     ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
-    setTriple(tripleCounter + 1)
-
-    console.log(pos)
+    setUltimate(ultimateCounter + 1)
   }
 
   const handleDragLeave = (e) => {
@@ -202,9 +178,28 @@ function YatchukAndrey() {
           ))}
         </React.Fragment>
       ))}
-      <div className='displayNone hide doublePlace'></div>
-      <div className='displayNone hide doublePlace'></div>
-      <div className='displayNone hide doublePlace'></div>
+      <div className='displayNone hide singlePlace'>
+        <img src={single} />
+      </div>
+      <div className='displayNone hide singlePlace'>
+        <img src={single} />
+      </div>
+      <div className='displayNone hide singlePlace'>
+        <img src={single} />
+      </div>
+      <div className='displayNone hide singlePlace'>
+        <img src={single} />
+      </div>
+      
+      <div className='displayNone hide doublePlace'>
+        <img src={double} />
+      </div>
+      <div className='displayNone hide doublePlace'>
+        <img src={double} />
+      </div>
+      <div className='displayNone hide doublePlace'>
+        <img src={double} />
+      </div>
 
       <div className='displayNone triplelace'></div>
       <div className='displayNone triplePlace'></div>
