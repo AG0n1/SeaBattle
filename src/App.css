@@ -11,8 +11,8 @@
 /* Handler Login */
 
 html {
+  background-image: url(./components/gamescreen/gamezone/img/background2.webp);
   background-color: black;
-  background-image: url(./components/gamescreen/gamezone/img/background.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -173,12 +173,12 @@ html {
   background-size: cover;
   background-position: center;
   user-select: none;
-  background-color: rgb(15, 12, 40);
-  border: 1px solid rgb(29, 26, 63);
+  background-color: black;
+  border: 1px solid #564705;
 }
 
 .cord {
-  background: rgb(175, 175, 255);
+  background: #f5da70;
 }
 
 .hov {
@@ -192,7 +192,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  border: 10px solid rgb(29, 26, 63);
+  border: 10px solid #ffcf10;
 }
 
 .makeSpace {
@@ -242,7 +242,7 @@ html {
   left: 0;
   width: 200px;
   height: 70px;
-  background-color: #9090f8;
+  background-color: #ffcf10;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -256,7 +256,7 @@ html {
   justify-content: space-between;
   width: 100%;
   height: 100vh;
-  background-image: url(./components/gamescreen/gamezone/img/background2.jpg);
+  background-image: url(./components/gamescreen/gamezone/img/background2.webp);
   background-size: cover;
   background-position: center;
 }
@@ -267,9 +267,9 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  box-shadow: 10px 0px 20px rgb(29, 26, 63) inset;
-  border: 10px solid rgb(29, 26, 63);
-  background-color: rgb(15, 11, 37);
+  box-shadow: 10px 0px 20px black inset;
+  border: 10px solid #ffcf10;
+  background-color: black;
 
 }
 
@@ -284,7 +284,7 @@ html {
 
 .ship-section:hover {
   transition: .2s;
-  box-shadow: 0px 0px 20px #9090f8 inset;
+  box-shadow: 0px 0px 20px #f5da70 inset;
 }
 
 img {
