@@ -25,8 +25,13 @@ function YatchukAndrey(settings) {
   let tripleHide = document.getElementsByClassName('triplePlace')
   let ultimateHide = document.getElementsByClassName('ultimatePlace')
 
-  const makeFetch = () => {
-
+  const makeFetch = (e) => {
+    if (singleCounter + doubleCounter + tripleCounter + ultimateCounter === 9) {
+      fetch('localhost:3001/')
+    } else {
+      alert("Низя")
+      e.preventDefault()
+    }
   }
 
   const handleDragOver = (e) => {
@@ -215,9 +220,9 @@ function YatchukAndrey(settings) {
 
                 <div className='displayNone ultimatePlace'></div>
               </div>
-                    
+                     
               <div style={{display: settings.display}} className='link' id = "makeLinkDNone">
-                  <Link onClick={makeFetch()} className='linkToPlay' to="../../play">
+                  <Link onClick={makeFetch} className='linkToPlay' to="../../play">
                       <img src={start} className="linkToPlayImg" />
                   </Link>
               </div>

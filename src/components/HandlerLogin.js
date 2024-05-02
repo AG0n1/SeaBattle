@@ -9,6 +9,7 @@ function HandlerLogin() {
     const [displayAlert, setDisplayAlert] = useState("none")
     const [gameId, setGameId] = useState(generateGameId()); 
     const [copied, setCopied] = useState(false);
+    const [createOrConnect, setCreate] = useState('')
 
     function generateGameId() {
         const symbols = ['1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','g','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
@@ -20,6 +21,7 @@ function HandlerLogin() {
     }
 
     const openCreate = () => {
+        setCreate('create')
         if (displayConnect === "block") {
             setDisplayConnect("none")
         }
@@ -27,6 +29,7 @@ function HandlerLogin() {
     }
 
     const openConnect = () => {
+        setCreate('connect')
         if (displayCreate === "block") {
             setDisplayCreate("none")
         }
@@ -39,11 +42,46 @@ function HandlerLogin() {
             e.preventDefault()
             setDisplayAlert("flex")
         } else {
-            try {
-                localStorage.setItem("gameId", gameId.toString())
-            } catch(err) {
-                console.log(err)
+            switch (createOrConnect) {
+                case 'create':
+                    try {
+                        localStorage.setItem("gameId", gameId.toString())
+                        fetch('http://localhost:3001/createGame', {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": `Bearer ${localStorage.getItem('token')}` 
+                            },
+                            body: JSON.stringify({ gameId: gameId, name: nameInput.value })
+                        })
+                        .catch(err => console.log(err))
+                    } catch(err) {
+                        console.log(err)
+                    }
+                    break
+                case 'connect':
+                    let val = document.getElementById('getVal')
+                    fetch('http://localhost:3001/connectToGame', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${localStorage.getItem('token')}` 
+                        },
+                        body: JSON.stringify({ gameId: val.value, name: nameInput.value })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (!data.isFind) {
+                            e.preventDefault()
+                            alert("Game wasn't found")
+                            
+                        }
+                    })
+                    break;
+                default:
+                    return
             }
+            
         }
     }
 
@@ -96,7 +134,7 @@ function HandlerLogin() {
 
 
                 <div id="gameCreationInfo" style={styleConnect}>
-                    <input className="inp" placeholder="Введите идентификатор игры"/>
+                    <input className="inp" id="getVal" placeholder="Введите идентификатор игры"/>
                 </div>
             </div>
 
