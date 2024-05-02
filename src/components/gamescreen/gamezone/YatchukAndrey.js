@@ -130,7 +130,6 @@ function YatchukAndrey(settings) {
     numberCell.style.backgroundColor = '#f5da70'
     let letterCell = document.getElementById(`L${e.target.id[0]}`)
     letterCell.style.backgroundColor = '#f5da70'
-
   };
   
   return (
