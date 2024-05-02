@@ -61,13 +61,13 @@ function YatchukAndrey(settings) {
   }
 
   const tripleFunc = (e, imgElement, id) => {
-
     if (tripleCounter == 2) {
       console.log('Неа')
       return
     }
     setPos((prevPos) => [...prevPos, { type: 'triple', x: id[0], y: id[1] }]);
 
+    console.log(tripleHide[tripleCounter])
     tripleHide[tripleCounter].classList.remove('displayNone')
     tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
     tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
@@ -206,8 +206,12 @@ function YatchukAndrey(settings) {
                   <img src={double} />
                 </div>
 
-                <div className='displayNone triplelace'></div>
-                <div className='displayNone triplePlace'></div>
+                <div className='displayNone hide triplePlace'>
+                  <img src={triple} />
+                </div>
+                <div className='displayNone hide triplePlace'>
+                  <img src={triple} />
+                </div>
 
                 <div className='displayNone ultimatePlace'></div>
               </div>
