@@ -26,7 +26,7 @@ function YatchukAndrey(settings) {
   let ultimateHide = document.getElementsByClassName('ultimatePlace')
 
   const makeFetch = (e) => {
-    if (singleCounter + doubleCounter + tripleCounter + ultimateCounter === 9) {
+    if (singleCounter + doubleCounter + tripleCounter + ultimateCounter === 10) {
       fetch('localhost:3001/')
     } else {
       alert("Низя")
@@ -36,6 +36,11 @@ function YatchukAndrey(settings) {
 
   const handleDragOver = (e) => {
     e.preventDefault();
+                          e.target.style.boxShadow = "0px 0px 5px #f5da70 inset";
+                          let numberCell = document.getElementById(`N${e.target.id[1]}`)
+                          numberCell.style.backgroundColor = 'white'
+                          let letterCell = document.getElementById(`L${e.target.id[0]}`)
+                          letterCell.style.backgroundColor = 'white'
   };
 
   const singleFunc = (e, imgElement, id) => {
@@ -120,7 +125,13 @@ function YatchukAndrey(settings) {
 
   const handleDragLeave = (e) => {
     e.preventDefault();
-    setShowBox(false);
+                          e.target.style.boxShadow = "0px 0px 5px rgb(23, 23, 23) inset";
+
+                          let numberCell = document.getElementById(`N${e.target.id[1]}`)
+                          numberCell.style.backgroundColor = '#f5da70'
+                          let letterCell = document.getElementById(`L${e.target.id[0]}`)
+                          letterCell.style.backgroundColor = '#f5da70'
+
   };
 
   const handleDrop = (e) => {
@@ -149,22 +160,11 @@ function YatchukAndrey(settings) {
         break;
     }
   };
-
-  const handleCellDrop = (e) => {
-    e.preventDefault();
-    e.target.style.boxShadow = "0px 0px 50px rgb(23, 23, 23) inset";
-    let numberCell = document.getElementById(`N${e.target.id[1]}`)
-    numberCell.style.backgroundColor = '#f5da70'
-    let letterCell = document.getElementById(`L${e.target.id[0]}`)
-    letterCell.style.backgroundColor = '#f5da70'
-  };
   
   return (
     <div className="makeSpace">
             <div 
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
+                
                 className="gamezone"
                 id="currentPlayer"
               >
@@ -181,25 +181,9 @@ function YatchukAndrey(settings) {
                     {columns.map((col, colIndex) => (
                       <div 
                         key={`${rowIndex}${colIndex}`} 
-                        onDragOver={(e) => {
-                          e.preventDefault();
-                          e.target.style.boxShadow = "0px 0px 5px #f5da70 inset";
-                          let numberCell = document.getElementById(`N${e.target.id[1]}`)
-                          numberCell.style.backgroundColor = 'white'
-                          let letterCell = document.getElementById(`L${e.target.id[0]}`)
-                          letterCell.style.backgroundColor = 'white'
-                        }}
-                        onDragLeave={(e) => {
-                          e.preventDefault();
-                          e.target.style.boxShadow = "0px 0px 5px rgb(23, 23, 23) inset";
-
-                          let numberCell = document.getElementById(`N${e.target.id[1]}`)
-                          numberCell.style.backgroundColor = '#f5da70'
-                          let letterCell = document.getElementById(`L${e.target.id[0]}`)
-                          letterCell.style.backgroundColor = '#f5da70'
-
-                        }}
-                        onDrop={handleCellDrop}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onDrop={handleDrop}
                         className="hov cell" 
                         id={`${rowIndex + 1}${col}`}
                       >
