@@ -6,7 +6,9 @@ import double from './img/spaceships/double.png'
 import triple from './img/spaceships/tripple.png'
 import ultimate from './img/spaceships/ultimate.png'
 
-function YatchukAndrey() {
+import start from "./img/Start.png"
+
+function YatchukAndrey(settings) {
   const ShipValue = React.useContext(Ship)
   const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
   const columns = Array.from({ length: 10 }, (_, index) => index);
@@ -23,12 +25,15 @@ function YatchukAndrey() {
   let tripleHide = document.getElementsByClassName('triplePlace')
   let ultimateHide = document.getElementsByClassName('ultimatePlace')
 
+  const makeFetch = () => {
+
+  }
+
   const handleDragOver = (e) => {
     e.preventDefault();
   };
 
   const singleFunc = (e, imgElement, id) => {
-
     if (singleCounter === 4) {
       return
     }
@@ -42,7 +47,6 @@ function YatchukAndrey() {
   }
 
   const doubleFunc = (e, imgElement, id) => {
-
     if (doubleCounter == 3) {
       console.log('Неа')
       return
@@ -56,13 +60,13 @@ function YatchukAndrey() {
   }
 
   const tripleFunc = (e, imgElement, id) => {
-
     if (tripleCounter == 2) {
       console.log('Неа')
       return
     }
     setPos((prevPos) => [...prevPos, { type: 'triple', x: id[0], y: id[1] }]);
 
+    console.log(tripleHide[tripleCounter])
     tripleHide[tripleCounter].classList.remove('displayNone')
     tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
     tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
@@ -70,12 +74,10 @@ function YatchukAndrey() {
   }
 
   const ultimateFunc = (e, imgElement, id) => {
-
     if (ultimateCounter == 1) {
       console.log('Неа')
       return
     }
-
     imgElement.src = ultimate;
     e.target.innerHTML = '';
     e.target.appendChild(imgElement);
@@ -98,6 +100,7 @@ function YatchukAndrey() {
     const shipType = e.dataTransfer.getData("ship");
     const imgElement = document.createElement("img");
     imgElement.className = shipType;
+
     
     switch (shipType) {
       case "single":
@@ -125,87 +128,100 @@ function YatchukAndrey() {
     numberCell.style.backgroundColor = '#f5da70'
     let letterCell = document.getElementById(`L${e.target.id[0]}`)
     letterCell.style.backgroundColor = '#f5da70'
-
   };
   
   return (
-    <div 
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
-      className="gamezone"
-      id="currentPlayer"
-    >
-      {showBox && <div className="box" id="box"></div>}
-      <div className="cell"></div>
-      {columns.map((col) => (
-        <div draggable="false" key={col} className="cell cord" id={`N${col}`}>
-          {col}
-        </div>
-      ))}
-      {rows.map((row, rowIndex) => (
-        <React.Fragment key={row}>
-          <div draggable="false" className="cell cord" id={`L${rowIndex + 1}`}>{row}</div>
-          {columns.map((col, colIndex) => (
+    <div className="makeSpace">
             <div 
-              key={`${rowIndex}${colIndex}`} 
-              onDragOver={(e) => {
-                e.preventDefault();
-                e.target.style.boxShadow = "0px 0px 5px #f5da70 inset";
-                let numberCell = document.getElementById(`N${e.target.id[1]}`)
-                numberCell.style.backgroundColor = 'white'
-                let letterCell = document.getElementById(`L${e.target.id[0]}`)
-                letterCell.style.backgroundColor = 'white'
-              }}
-              onDragLeave={(e) => {
-                e.preventDefault();
-                e.target.style.boxShadow = "0px 0px 5px rgb(23, 23, 23) inset";
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                className="gamezone"
+                id="currentPlayer"
+              >
+                {showBox && <div className="box" id="box"></div>}
+                <div className="cell"></div>
+                {columns.map((col) => (
+                  <div draggable="false" key={col} className="cell cord" id={`N${col}`}>
+                    {col}
+                  </div>
+                ))}
+                {rows.map((row, rowIndex) => (
+                  <React.Fragment key={row}>
+                    <div draggable="false" className="cell cord" id={`L${rowIndex + 1}`}>{row}</div>
+                    {columns.map((col, colIndex) => (
+                      <div 
+                        key={`${rowIndex}${colIndex}`} 
+                        onDragOver={(e) => {
+                          e.preventDefault();
+                          e.target.style.boxShadow = "0px 0px 5px #f5da70 inset";
+                          let numberCell = document.getElementById(`N${e.target.id[1]}`)
+                          numberCell.style.backgroundColor = 'white'
+                          let letterCell = document.getElementById(`L${e.target.id[0]}`)
+                          letterCell.style.backgroundColor = 'white'
+                        }}
+                        onDragLeave={(e) => {
+                          e.preventDefault();
+                          e.target.style.boxShadow = "0px 0px 5px rgb(23, 23, 23) inset";
 
-                let numberCell = document.getElementById(`N${e.target.id[1]}`)
-                numberCell.style.backgroundColor = '#f5da70'
-                let letterCell = document.getElementById(`L${e.target.id[0]}`)
-                letterCell.style.backgroundColor = '#f5da70'
+                          let numberCell = document.getElementById(`N${e.target.id[1]}`)
+                          numberCell.style.backgroundColor = '#f5da70'
+                          let letterCell = document.getElementById(`L${e.target.id[0]}`)
+                          letterCell.style.backgroundColor = '#f5da70'
 
-              }}
-              onDrop={handleCellDrop}
-              className="hov cell" 
-              id={`${rowIndex + 1}${col}`}
-            >
-              {
-              
-              }
+                        }}
+                        onDrop={handleCellDrop}
+                        className="hov cell" 
+                        id={`${rowIndex + 1}${col}`}
+                      >
+                        {
+                        
+                        }
+                      </div>
+                    ))}
+                  </React.Fragment>
+                ))}
+                <div className='displayNone hide singlePlace'>
+                  <img src={single} />
+                </div>
+                <div className='displayNone hide singlePlace'>
+                  <img src={single} />
+                </div>
+                <div className='displayNone hide singlePlace'>
+                  <img src={single} />
+                </div>
+                <div className='displayNone hide singlePlace'>
+                  <img src={single} />
+                </div>
+                
+                <div className='displayNone hide doublePlace'>
+                  <img src={double} />
+                </div>
+                <div className='displayNone hide doublePlace'>
+                  <img src={double} />
+                </div>
+                <div className='displayNone hide doublePlace'>
+                  <img src={double} />
+                </div>
+
+                <div className='displayNone hide triplePlace'>
+                  <img src={triple} />
+                </div>
+                <div className='displayNone hide triplePlace'>
+                  <img src={triple} />
+                </div>
+
+              <div className='displayNone hide ultimatePlace'>
+                <img src={ultimate} />
+              </div>
             </div>
-          ))}
-        </React.Fragment>
-      ))}
-      <div className='displayNone hide singlePlace'>
-        <img src={single} />
-      </div>
-      <div className='displayNone hide singlePlace'>
-        <img src={single} />
-      </div>
-      <div className='displayNone hide singlePlace'>
-        <img src={single} />
-      </div>
-      <div className='displayNone hide singlePlace'>
-        <img src={single} />
-      </div>
-      
-      <div className='displayNone hide doublePlace'>
-        <img src={double} />
-      </div>
-      <div className='displayNone hide doublePlace'>
-        <img src={double} />
-      </div>
-      <div className='displayNone hide doublePlace'>
-        <img src={double} />
-      </div>
-
-      <div className='displayNone triplelace'></div>
-      <div className='displayNone triplePlace'></div>
-
-      <div className='displayNone ultimatePlace'></div>
-    </div>
+                    
+              <div style={{display: settings.display}} className='link' id = "makeLinkDNone">
+                  <Link onClick={makeFetch()} className='linkToPlay' to="../../play">
+                      <img src={start} className="linkToPlayImg" />
+                  </Link>
+              </div>
+            </div>      
   );
 }
 

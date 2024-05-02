@@ -67,6 +67,10 @@ html {
   margin: 10px;
 }
 
+.btn:hover {
+  background-color: #c4c3c3;
+}
+
 #gameIdInput {
   display: flex;
   flex-direction: column;
@@ -313,7 +317,7 @@ img {
 
 .double > img {
   width: 100px;
-}
+}w
 
 .triple {
   display: flex;
@@ -325,6 +329,18 @@ img {
 .triple > img {
   height: 50px;
   width: 120px;
+}
+
+.ultimate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.ultimate > img {
+  height: 150px;
+  width: 210px;
 }
 
 .setField {
@@ -387,6 +403,11 @@ img {
 }
 
 .ultimatePlace {
+  width: 200px;
+  height: 150px;
+}
+
+.ultimatePlace > img {
   width: 200px;
   height: 150px;
 }
