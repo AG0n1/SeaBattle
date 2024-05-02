@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import login from "./gamescreen/gamezone/img/Login.png"
 import start from "./gamescreen/gamezone/img/Start.png"
+import { useNavigate } from 'react-router-dom';
+
+
 
 function HandlerLogin() {
     const [displayCreate, setDisplayCreate] = useState("none")
@@ -10,7 +13,7 @@ function HandlerLogin() {
     const [gameId, setGameId] = useState(generateGameId()); 
     const [copied, setCopied] = useState(false);
     const [createOrConnect, setCreate] = useState('')
-
+    const navigate = useNavigate()
     function generateGameId() {
         const symbols = ['1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','g','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
         let gameId = "";
@@ -55,11 +58,13 @@ function HandlerLogin() {
                             body: JSON.stringify({ gameId: gameId, name: nameInput.value })
                         })
                         .catch(err => console.log(err))
+                        navigate('/setShips')
                     } catch(err) {
                         console.log(err)
                     }
                     break
                 case 'connect':
+                    console.log(111)
                     let val = document.getElementById('getVal')
                     fetch('http://localhost:3001/connectToGame', {
                         method: 'POST',
@@ -71,10 +76,13 @@ function HandlerLogin() {
                     })
                     .then(res => res.json())
                     .then(data => {
+                        console.log(data)
                         if (!data.isFind) {
-                            e.preventDefault()
-                            alert("Game wasn't found")
-                            
+                            e.preventDefault();
+                            alert('Game was not found!')
+                        } else {
+                            console.log(data.isFind)
+                            navigate('/setShips')
                         }
                     })
                     break;
@@ -138,9 +146,9 @@ function HandlerLogin() {
                 </div>
             </div>
 
-            <Link onClick={checkData} className="play" to="../setShips">
+            <button onClick={checkData} className="play">
                 <img src={start} className="PlayImg"/>
-            </Link>
+            </button>
 
             <div className="alert" style={styleAlert}>
                 <div className="alertBlock" onClick={closeAlert}>

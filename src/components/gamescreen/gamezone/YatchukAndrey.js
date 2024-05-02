@@ -216,9 +216,9 @@ function YatchukAndrey(settings) {
                   <img src={triple} />
                 </div>
 
-              <div className='displayNone hide ultimatePlace'>
-                <img src={ultimate} />
-              </div>
+                <div className='displayNone hide ultimatePlace'>
+                  <img src={ultimate} />
+                </div>
             </div>
                     
               <div style={{display: settings.display}} className='link' id = "makeLinkDNone">
