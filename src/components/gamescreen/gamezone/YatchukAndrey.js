@@ -36,10 +36,10 @@ function YatchukAndrey(settings) {
 
   const handleDragOver = (e) => {
     e.preventDefault();
-    e.target.style.boxShadow = "0px 0px 5px #f5da70 inset";
+    e.target.style.boxShadow = "0px 0px 5px #ffcf10 inset";
     let numberCell = document.getElementById(`N${e.target.id[1]}`)
     numberCell.style.backgroundColor = 'white'
-    let letterCell = document.getElementById(`L${e.target.id[0]}`)
+    let letterCell = document.getElementById(`L${parseInt(e.target.id[0]) + 1}`)
     letterCell.style.backgroundColor = 'white'
   };
 
@@ -51,9 +51,14 @@ function YatchukAndrey(settings) {
     setPos((prevPos) => [...prevPos, { type: 'single', x: id[0], y: id[1] }]);
  
     singleHide[singleCounter].classList.remove('displayNone')
-    singleHide[singleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+    singleHide[singleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
     singleHide[singleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
     setSingle(singleCounter + 1)
+
+    const targetID = e.dataTransfer.getData("singleID")
+    let targetElement = document.getElementById(targetID)
+    targetElement.style.display = 'none'
+
   }
 
   const doubleFunc = (e, imgElement, id) => {
@@ -65,19 +70,19 @@ function YatchukAndrey(settings) {
     if (id[1] !== "9") {
       setPos((prevPos) => [...prevPos, { type: 'double', x: parseInt(id[0]), y: parseInt(id[1]) }]);
 
-      doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+      doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
       doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
     } else {
       setPos((prevPos) => [...prevPos, { type: 'double', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1) }]);
 
-      doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+      doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
       doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50)}px`
     }
-    
-    console.log(pos)
-    
-    
     setDouble(doubleCounter + 1)
+
+    const targetID = e.dataTransfer.getData("doubleID")
+    let targetElement = document.getElementById(targetID)
+    targetElement.style.display = 'none'
   }
 
   const tripleFunc = (e, imgElement, id) => {
@@ -90,16 +95,20 @@ function YatchukAndrey(settings) {
     if (parseInt(id[1]) >= 8) {
       setPos((prevPos) => [...prevPos, { type: 'triple', x: parseInt(id[0]), y: 7}]);
 
-      tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+      tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
       tripleHide[tripleCounter].style.left = `${(7 * 50) + 50}px`
     } else {
       setPos((prevPos) => [...prevPos, { type: 'triple', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1) }]);
 
-      tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+      tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
       tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
     }
     console.log(pos)
     setTriple(tripleCounter + 1)
+
+    const targetID = e.dataTransfer.getData("tripleID")
+    let targetElement = document.getElementById(targetID)
+    targetElement.style.display = 'none'
   }
 
   const ultimateFunc = (e, imgElement, id) => {
@@ -110,9 +119,9 @@ function YatchukAndrey(settings) {
     
     ultimateHide[ultimateCounter].classList.remove('displayNone')
     if (parseInt(id[0]) >= 8) {
-      ultimateHide[ultimateCounter].style.top = `${(7 * 50)}px`
+      ultimateHide[ultimateCounter].style.top = `${(7 * 50) + 50}px`
     } else {
-      ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+      ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
     }
 
     if (parseInt(id[1]) >= 7) {
@@ -121,6 +130,10 @@ function YatchukAndrey(settings) {
       ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
     }
     setUltimate(ultimateCounter + 1)
+
+    const targetID = e.dataTransfer.getData("ultimateID")
+    let targetElement = document.getElementById(targetID)
+    targetElement.style.display = 'none'
   }
 
   const handleDragLeave = (e) => {
@@ -129,21 +142,21 @@ function YatchukAndrey(settings) {
 
     let numberCell = document.getElementById(`N${e.target.id[1]}`)
     numberCell.style.backgroundColor = '#f5da70'
-    let letterCell = document.getElementById(`L${e.target.id[0]}`)
+    let letterCell = document.getElementById(`L${parseInt(e.target.id[0]) + 1}`)
     letterCell.style.backgroundColor = '#f5da70'
-
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
     setShowBox(false);
     const shipType = e.dataTransfer.getData("ship");
+
     const imgElement = document.createElement("img");
     imgElement.className = shipType;
 
     let numberCell = document.getElementById(`N${e.target.id[1]}`)
     numberCell.style.backgroundColor = '#f5da70'
-    let letterCell = document.getElementById(`L${e.target.id[0]}`)
+    let letterCell = document.getElementById(`L${parseInt(e.target.id[0]) + 1}`)
     letterCell.style.backgroundColor = '#f5da70'
 
 
