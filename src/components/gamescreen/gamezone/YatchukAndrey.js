@@ -141,7 +141,12 @@ function YatchukAndrey(settings) {
     const imgElement = document.createElement("img");
     imgElement.className = shipType;
 
-    
+    let numberCell = document.getElementById(`N${e.target.id[1]}`)
+    numberCell.style.backgroundColor = '#f5da70'
+    let letterCell = document.getElementById(`L${e.target.id[0]}`)
+    letterCell.style.backgroundColor = '#f5da70'
+
+
     switch (shipType) {
       case "single":
         singleFunc(e, imgElement, e.target.id);
