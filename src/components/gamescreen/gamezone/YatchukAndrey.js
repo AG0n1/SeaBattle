@@ -36,11 +36,11 @@ function YatchukAndrey(settings) {
 
   const handleDragOver = (e) => {
     e.preventDefault();
-                          e.target.style.boxShadow = "0px 0px 5px #f5da70 inset";
-                          let numberCell = document.getElementById(`N${e.target.id[1]}`)
-                          numberCell.style.backgroundColor = 'white'
-                          let letterCell = document.getElementById(`L${e.target.id[0]}`)
-                          letterCell.style.backgroundColor = 'white'
+    e.target.style.boxShadow = "0px 0px 5px #f5da70 inset";
+    let numberCell = document.getElementById(`N${e.target.id[1]}`)
+    numberCell.style.backgroundColor = 'white'
+    let letterCell = document.getElementById(`L${e.target.id[0]}`)
+    letterCell.style.backgroundColor = 'white'
   };
 
   const singleFunc = (e, imgElement, id) => {
@@ -101,12 +101,12 @@ function YatchukAndrey(settings) {
 
   const handleDragLeave = (e) => {
     e.preventDefault();
-                          e.target.style.boxShadow = "0px 0px 5px rgb(23, 23, 23) inset";
+    e.target.style.boxShadow = "0px 0px 5px rgb(23, 23, 23) inset";
 
-                          let numberCell = document.getElementById(`N${e.target.id[1]}`)
-                          numberCell.style.backgroundColor = '#f5da70'
-                          let letterCell = document.getElementById(`L${e.target.id[0]}`)
-                          letterCell.style.backgroundColor = '#f5da70'
+    let numberCell = document.getElementById(`N${e.target.id[1]}`)
+    numberCell.style.backgroundColor = '#f5da70'
+    let letterCell = document.getElementById(`L${e.target.id[0]}`)
+    letterCell.style.backgroundColor = '#f5da70'
 
   };
 
@@ -161,7 +161,7 @@ function YatchukAndrey(settings) {
                         onDragLeave={handleDragLeave}
                         onDrop={handleDrop}
                         className="hov cell" 
-                        id={`${rowIndex + 1}${col}`}
+                        id={`${rowIndex}${col}`}
                       >
                         {
                         
