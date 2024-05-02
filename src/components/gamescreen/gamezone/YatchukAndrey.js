@@ -47,7 +47,6 @@ function YatchukAndrey(settings) {
   }
 
   const doubleFunc = (e, imgElement, id) => {
-
     if (doubleCounter == 3) {
       console.log('Неа')
       return
@@ -75,12 +74,10 @@ function YatchukAndrey(settings) {
   }
 
   const ultimateFunc = (e, imgElement, id) => {
-
     if (ultimateCounter == 1) {
       console.log('Неа')
       return
     }
-
     imgElement.src = ultimate;
     e.target.innerHTML = '';
     e.target.appendChild(imgElement);
@@ -103,6 +100,7 @@ function YatchukAndrey(settings) {
     const shipType = e.dataTransfer.getData("ship");
     const imgElement = document.createElement("img");
     imgElement.className = shipType;
+
     
     switch (shipType) {
       case "single":
@@ -213,8 +211,10 @@ function YatchukAndrey(settings) {
                   <img src={triple} />
                 </div>
 
-                <div className='displayNone ultimatePlace'></div>
+              <div className='displayNone hide ultimatePlace'>
+                <img src={ultimate} />
               </div>
+            </div>
                     
               <div style={{display: settings.display}} className='link' id = "makeLinkDNone">
                   <Link onClick={makeFetch()} className='linkToPlay' to="../../play">
