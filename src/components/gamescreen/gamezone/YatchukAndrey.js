@@ -56,11 +56,22 @@ function YatchukAndrey(settings) {
       console.log('Неа')
       return
     }
-    setPos((prevPos) => [...prevPos, { type: 'double', x: id[0], y: id[1] }]);
-
     doubleHide[doubleCounter].classList.remove('displayNone')
-    doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
-    doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    if (id[1] !== "9") {
+      setPos((prevPos) => [...prevPos, { type: 'double', x: parseInt(id[0]), y: parseInt(id[1]) }]);
+
+      doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+      doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    } else {
+      setPos((prevPos) => [...prevPos, { type: 'double', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1) }]);
+
+      doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+      doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50)}px`
+    }
+    
+    console.log(pos)
+    
+    
     setDouble(doubleCounter + 1)
   }
 
@@ -69,12 +80,20 @@ function YatchukAndrey(settings) {
       console.log('Неа')
       return
     }
-    setPos((prevPos) => [...prevPos, { type: 'triple', x: id[0], y: id[1] }]);
 
-    console.log(tripleHide[tripleCounter])
     tripleHide[tripleCounter].classList.remove('displayNone')
-    tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
-    tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    if (parseInt(id[1]) >= 8) {
+      setPos((prevPos) => [...prevPos, { type: 'triple', x: parseInt(id[0]), y: 7}]);
+
+      tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+      tripleHide[tripleCounter].style.left = `${(7 * 50) + 50}px`
+    } else {
+      setPos((prevPos) => [...prevPos, { type: 'triple', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1) }]);
+
+      tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+      tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    }
+    console.log(pos)
     setTriple(tripleCounter + 1)
   }
 
@@ -83,14 +102,19 @@ function YatchukAndrey(settings) {
       console.log('Неа')
       return
     }
-    imgElement.src = ultimate;
-    e.target.innerHTML = '';
-    e.target.appendChild(imgElement);
-    setPos((prevPos) => [...prevPos, { type: 'ultimate', x: id[0], y: id[1] }]);
-
+    
     ultimateHide[ultimateCounter].classList.remove('displayNone')
-    ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50)}px`
-    ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    if (parseInt(id[0]) >= 8) {
+      ultimateHide[ultimateCounter].style.top = `${(7 * 50)}px`
+    } else {
+      ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+    }
+
+    if (parseInt(id[1]) >= 7) {
+      ultimateHide[ultimateCounter].style.left = `${(6 * 50) + 50}px`
+    } else {
+      ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+    }
     setUltimate(ultimateCounter + 1)
   }
 
