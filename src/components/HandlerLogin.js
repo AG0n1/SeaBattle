@@ -17,7 +17,7 @@ function HandlerLogin() {
     function generateGameId() {
         const symbols = ['1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','g','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
         let gameId = "";
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < 8; i++) {
             gameId += symbols[Math.floor(Math.random() * 36)];
         }
         return gameId;

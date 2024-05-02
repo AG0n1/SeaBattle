@@ -45,24 +45,24 @@ app.post('/api', (req, res) => {
 
 })
 
-// app.listen(3001, () => {
-//     console.log("Сервер работает на 3001")
-// })
+app.listen(3001, () => {
+    console.log("Сервер работает на 3001")
+})
 
-app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
-const port = process.env.PORT || 3001;
-server.listen(port, async () => {
-    console.log(`Сервер запущен на порте ${port}`);
+// const port = process.env.PORT || 3001;
+// server.listen(port, async () => {
+//     console.log(`Сервер запущен на порте ${port}`);
 
-    const tunnel = await localtunnel({ port });
-    console.log(`Проект доступен по ссылке: ${tunnel.url}`);
+//     const tunnel = await localtunnel({ port });
+//     console.log(`Проект доступен по ссылке: ${tunnel.url}`);
 
-    server.on('close', () => {
-        tunnel.close();
-    });
-});
+//     server.on('close', () => {
+//         tunnel.close();
+//     });
+// });
