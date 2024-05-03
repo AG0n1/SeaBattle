@@ -36,10 +36,10 @@ function YatchukAndrey(settings) {
 
   const handleDragOver = (e) => {
     e.preventDefault();
-    e.target.style.boxShadow = "0px 0px 5px #f5da70 inset";
+    e.target.style.boxShadow = "0px 0px 5px #ffcf10 inset";
     let numberCell = document.getElementById(`N${e.target.id[1]}`)
     numberCell.style.backgroundColor = 'white'
-    let letterCell = document.getElementById(`L${e.target.id[0]}`)
+    let letterCell = document.getElementById(`L${parseInt(e.target.id[0]) + 1}`)
     letterCell.style.backgroundColor = 'white'
   };
 
@@ -51,9 +51,16 @@ function YatchukAndrey(settings) {
     setPos((prevPos) => [...prevPos, { type: 'single', x: id[0], y: id[1] }]);
  
     singleHide[singleCounter].classList.remove('displayNone')
-    singleHide[singleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
+    singleHide[singleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
     singleHide[singleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
     setSingle(singleCounter + 1)
+
+    let targetCell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    targetCell.classList.add('notFree')
+
+    const targetID = e.dataTransfer.getData("singleID")
+    let targetElement = document.getElementById(targetID)
+    targetElement.style.display = 'none'
   }
 
   const doubleFunc = (e, imgElement, id) => {
@@ -61,12 +68,32 @@ function YatchukAndrey(settings) {
       console.log('Неа')
       return
     }
-    setPos((prevPos) => [...prevPos, { type: 'double', x: id[0], y: id[1] }]);
+    let cell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+1}`)
 
-    doubleHide[doubleCounter].classList.remove('displayNone')
-    doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
-    doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
-    setDouble(doubleCounter + 1)
+    if (cell.className.includes('notFree')) {
+      e.target.style.boxShadow = 'none';
+    } else {
+      doubleHide[doubleCounter].classList.remove('displayNone')
+      if (id[1] !== "9") {
+        setPos((prevPos) => [...prevPos, {type: 'double', x: parseInt(id[0]), y: parseInt(id[1])}]);
+
+        doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+        doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+      } else {
+        setPos((prevPos) => [...prevPos, {type: 'double', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1)}]);
+
+        doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+        doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50)}px`
+      }
+      setDouble(doubleCounter + 1)
+
+      let targetCell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+      targetCell.classList.add('notFree')
+
+      const targetID = e.dataTransfer.getData("doubleID")
+      let targetElement = document.getElementById(targetID)
+      targetElement.style.display = 'none'
+    }
   }
 
   const tripleFunc = (e, imgElement, id) => {
@@ -74,13 +101,34 @@ function YatchukAndrey(settings) {
       console.log('Неа')
       return
     }
-    setPos((prevPos) => [...prevPos, { type: 'triple', x: id[0], y: id[1] }]);
+    let cell1 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+1}`)
+    let cell2 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+2}`)
 
-    console.log(tripleHide[tripleCounter])
-    tripleHide[tripleCounter].classList.remove('displayNone')
-    tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50)}px`
-    tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
-    setTriple(tripleCounter + 1)
+    if (cell1.className.includes('notFree') || cell2.className.includes('notFree')) {
+      e.target.style.boxShadow = 'none';
+    } else {
+      tripleHide[tripleCounter].classList.remove('displayNone')
+      if (parseInt(id[1]) >= 8) {
+        setPos((prevPos) => [...prevPos, {type: 'triple', x: parseInt(id[0]), y: 7}]);
+
+        tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+        tripleHide[tripleCounter].style.left = `${(7 * 50) + 50}px`
+      } else {
+        setPos((prevPos) => [...prevPos, {type: 'triple', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1)}]);
+
+        tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+        tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+      }
+      console.log(pos)
+      setTriple(tripleCounter + 1)
+
+      let targetCell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+      targetCell.classList.add('notFree')
+
+      const targetID = e.dataTransfer.getData("tripleID")
+      let targetElement = document.getElementById(targetID)
+      targetElement.style.display = 'none'
+    }
   }
 
   const ultimateFunc = (e, imgElement, id) => {
@@ -88,15 +136,50 @@ function YatchukAndrey(settings) {
       console.log('Неа')
       return
     }
-    imgElement.src = ultimate;
-    e.target.innerHTML = '';
-    e.target.appendChild(imgElement);
-    setPos((prevPos) => [...prevPos, { type: 'ultimate', x: id[0], y: id[1] }]);
+    let cell11 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+1}`)
+    let cell12 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+2}`)
+    let cell13 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+3}`)
+    let cell20 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])}`)
+    let cell21 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])+1}`)
+    let cell22 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])+2}`)
+    let cell23 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])+3}`)
+    let cell30 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])}`)
+    let cell31 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])+1}`)
+    let cell32 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])+2}`)
+    let cell33 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])+3}`)
 
-    ultimateHide[ultimateCounter].classList.remove('displayNone')
-    ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50)}px`
-    ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
-    setUltimate(ultimateCounter + 1)
+    if (cell11.className.includes('notFree') ||
+        cell12.className.includes('notFree') ||
+        cell13.className.includes('notFree') ||
+        cell20.className.includes('notFree') ||
+        cell21.className.includes('notFree') ||
+        cell22.className.includes('notFree') ||
+        cell23.className.includes('notFree') ||
+        cell30.className.includes('notFree') ||
+        cell31.className.includes('notFree') ||
+        cell32.className.includes('notFree') ||
+        cell33.className.includes('notFree')) {
+      e.target.style.boxShadow = 'none';
+    } else {
+
+      ultimateHide[ultimateCounter].classList.remove('displayNone')
+      if (parseInt(id[0]) >= 8) {
+        ultimateHide[ultimateCounter].style.top = `${(7 * 50) + 50}px`
+      } else {
+        ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+      }
+
+      if (parseInt(id[1]) >= 7) {
+        ultimateHide[ultimateCounter].style.left = `${(6 * 50) + 50}px`
+      } else {
+        ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+      }
+      setUltimate(ultimateCounter + 1)
+
+      const targetID = e.dataTransfer.getData("ultimateID")
+      let targetElement = document.getElementById(targetID)
+      targetElement.style.display = 'none'
+    }
   }
 
   const handleDragLeave = (e) => {
@@ -105,19 +188,24 @@ function YatchukAndrey(settings) {
 
     let numberCell = document.getElementById(`N${e.target.id[1]}`)
     numberCell.style.backgroundColor = '#f5da70'
-    let letterCell = document.getElementById(`L${e.target.id[0]}`)
+    let letterCell = document.getElementById(`L${parseInt(e.target.id[0]) + 1}`)
     letterCell.style.backgroundColor = '#f5da70'
-
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
     setShowBox(false);
     const shipType = e.dataTransfer.getData("ship");
+
     const imgElement = document.createElement("img");
     imgElement.className = shipType;
 
-    
+
+    let numberCell = document.getElementById(`N${e.target.id[1]}`)
+    numberCell.style.backgroundColor = '#f5da70'
+    let letterCell = document.getElementById(`L${parseInt(e.target.id[0]) + 1}`)
+    letterCell.style.backgroundColor = '#f5da70'
+
     switch (shipType) {
       case "single":
         singleFunc(e, imgElement, e.target.id);
@@ -170,16 +258,16 @@ function YatchukAndrey(settings) {
                     ))}
                   </React.Fragment>
                 ))}
-                <div className='displayNone hide singlePlace'>
+                <div className='displayNone hide singlePlace ship'>
                   <img src={single} />
                 </div>
-                <div className='displayNone hide singlePlace'>
+                <div className='displayNone hide singlePlace ship'>
                   <img src={single} />
                 </div>
-                <div className='displayNone hide singlePlace'>
+                <div className='displayNone hide singlePlace ship'>
                   <img src={single} />
                 </div>
-                <div className='displayNone hide singlePlace'>
+                <div className='displayNone hide singlePlace ship'>
                   <img src={single} />
                 </div>
                 
@@ -200,9 +288,9 @@ function YatchukAndrey(settings) {
                   <img src={triple} />
                 </div>
 
-              <div className='displayNone hide ultimatePlace'>
-                <img src={ultimate} />
-              </div>
+                <div className='displayNone hide ultimatePlace'>
+                  <img src={ultimate} />
+                </div>
             </div>
                     
               <div style={{display: settings.display}} className='link' id = "makeLinkDNone">
