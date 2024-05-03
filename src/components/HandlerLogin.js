@@ -45,6 +45,7 @@ function HandlerLogin() {
             e.preventDefault()
             setDisplayAlert("flex")
         } else {
+            localStorage.setItem("name", nameInput.value)
             switch (createOrConnect) {
                 case 'create':
                     try {

@@ -27,7 +27,20 @@ function YatchukAndrey(settings) {
 
   const makeFetch = (e) => {
     if (singleCounter + doubleCounter + tripleCounter + ultimateCounter === 10) {
-      fetch('localhost:3001/')
+      const shipPositions = {
+        name: localStorage.getItem("name"),
+        positions: pos
+      };
+      console.log(shipPositions)
+      // fetch('localhost:3001/getPos', {
+      //   method: "POST",
+      //   headers: {
+      //       "Content-Type": "application/json",
+      //       "Authorization": `Bearer ${localStorage.getItem('token')}` 
+      //   },
+      //   body: JSON.stringify({name: localStorage.getItem("name", ...pos)})
+      // })
+      // .catch(err => console.log(err))
     } else {
       alert("Низя")
       e.preventDefault()
@@ -47,8 +60,6 @@ function YatchukAndrey(settings) {
     if (singleCounter === 4) {
       return
     }
-
-    setPos((prevPos) => [...prevPos, { type: 'single', x: id[0], y: id[1] }]);
  
     singleHide[singleCounter].classList.remove('displayNone')
     singleHide[singleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
@@ -59,6 +70,7 @@ function YatchukAndrey(settings) {
     let targetElement = document.getElementById(targetID)
     targetElement.style.display = 'none'
 
+    setPos((prevPos) => [...prevPos, { type: 'single', x: id[0], y: id[1] }]);
   }
 
   const doubleFunc = (e, imgElement, id) => {
@@ -118,15 +130,19 @@ function YatchukAndrey(settings) {
     }
     
     ultimateHide[ultimateCounter].classList.remove('displayNone')
-    if (parseInt(id[0]) >= 8) {
+    if (parseInt(id[0]) >= 8) { // по вертикали
+      setPos((prevPos) => [...prevPos, { type: 'ultimate', x: 7, y: parseInt(id[1]) }]);
       ultimateHide[ultimateCounter].style.top = `${(7 * 50) + 50}px`
     } else {
+      setPos((prevPos) => [...prevPos, { type: 'ultimate', x: parseInt(id[0]), y: parseInt(id[1]) }]);
       ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
     }
 
-    if (parseInt(id[1]) >= 7) {
+    if (parseInt(id[1]) >= 7) { // по горизонтали
+      setPos((prevPos) => [...prevPos, { type: 'ultimate', x: parseInt(id[0]), y: 7 }]);
       ultimateHide[ultimateCounter].style.left = `${(6 * 50) + 50}px`
     } else {
+      setPos((prevPos) => [...prevPos, { type: 'ultimate', x: (parseInt(id[0])), y: parseInt(id[1]) }]);
       ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
     }
     setUltimate(ultimateCounter + 1)
@@ -134,6 +150,7 @@ function YatchukAndrey(settings) {
     const targetID = e.dataTransfer.getData("ultimateID")
     let targetElement = document.getElementById(targetID)
     targetElement.style.display = 'none'
+    
   }
 
   const handleDragLeave = (e) => {
@@ -247,11 +264,11 @@ function YatchukAndrey(settings) {
                 </div>
             </div>
                     
-              <div style={{display: settings.display}} className='link' id = "makeLinkDNone">
-                  <Link onClick={makeFetch} className='linkToPlay' to="../../play">
-                      <img src={start} className="linkToPlayImg" />
-                  </Link>
-              </div>
+            <div style={{display: settings.display}} className='link' id = "makeLinkDNone">
+                <Link onClick={makeFetch} className='linkToPlay' to="../../play">
+                    <img src={start} className="linkToPlayImg" />
+                </Link>
+            </div>
             </div>      
   );
 }
