@@ -18,9 +18,7 @@ app.post('/createGame', (req, res) => {
     let {gameId} = req.body,
         {name} = req.body
     games[gameId] = {
-        [name]: {
-            
-        }
+        name1: name
     }  
 })
 
@@ -31,19 +29,11 @@ app.post('/connectToGame', (req, res) => {
     const game = games[gameId];
     if (game) {
         console.log('Game found:', game);
-        res.json({isFind: true})
-
-        games[gameId].name = {
-
-        }
+        // Здесь можете делать что-то с найденной игрой
     } else {
         res.json({isFind: false})
     }
 });
-
-app.post('/getPos', (req, res) => {
-
-})
 
 app.get('/api', (req, res) => {
     res.json(games)
