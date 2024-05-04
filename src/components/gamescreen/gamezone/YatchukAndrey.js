@@ -5,9 +5,8 @@ import single from './img/spaceships/single.png'
 import double from './img/spaceships/double.png'
 import triple from './img/spaceships/tripple.png'
 import ultimate from './img/spaceships/ultimate.png'
-import start from "./img/Start.png"
 
-export const Positions = React.createContext()
+import start from "./img/Start.png"
 
 function YatchukAndrey(settings) {
   const ShipValue = React.useContext(Ship)
@@ -28,9 +27,6 @@ function YatchukAndrey(settings) {
 
   const makeFetch = (e) => {
     if (singleCounter + doubleCounter + tripleCounter + ultimateCounter === 10) {
-      e.dataTransfer.setData("pos", pos)
-      console.log(pos)
-      e.preventDefault()
       fetch('localhost:3001/')
     } else {
       alert("Низя")
@@ -72,26 +68,39 @@ function YatchukAndrey(settings) {
       console.log('Неа')
       return
     }
-    let cell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+1}`)
+    let cell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    if (parseInt(id[1]) <= 8) {
+      cell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+1}`)
+      if (cell.className.includes('notFree')) {
+        e.target.style.boxShadow = 'none';
+      } else {
+        doubleHide[doubleCounter].classList.remove('displayNone')
+        if (id[1] !== "9") {
+          setPos((prevPos) => [...prevPos, {type: 'double', x: parseInt(id[0]), y: parseInt(id[1])}]);
+          doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+          doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+        } else {
+          setPos((prevPos) => [...prevPos, {type: 'double', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1)}]);
+          doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+          doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50)}px`
+        }
+        setDouble(doubleCounter + 1)
 
-    if (cell.className.includes('notFree')) {
-      e.target.style.boxShadow = 'none';
+        let targetCell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+        targetCell.classList.add('notFree')
+
+        const targetID = e.dataTransfer.getData("doubleID")
+        let targetElement = document.getElementById(targetID)
+        targetElement.style.display = 'none'
+      }
     } else {
       doubleHide[doubleCounter].classList.remove('displayNone')
-      if (id[1] !== "9") {
-        setPos((prevPos) => [...prevPos, {type: 'double', x: parseInt(id[0]), y: parseInt(id[1])}]);
-
-        doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
-        doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
-      } else {
-        setPos((prevPos) => [...prevPos, {type: 'double', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1)}]);
-
-        doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
-        doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50)}px`
-      }
+      setPos((prevPos) => [...prevPos, {type: 'double', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1)}]);
+      doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+      doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50)}px`
       setDouble(doubleCounter + 1)
 
-      let targetCell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+      let targetCell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])-1}`)
       targetCell.classList.add('notFree')
 
       const targetID = e.dataTransfer.getData("doubleID")
@@ -105,28 +114,44 @@ function YatchukAndrey(settings) {
       console.log('Неа')
       return
     }
-    let cell1 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+1}`)
-    let cell2 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+2}`)
+    let cell1 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell2 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
 
-    if (cell1.className.includes('notFree') || cell2.className.includes('notFree')) {
-      e.target.style.boxShadow = 'none';
+    if (parseInt(id[1]) <= 7) {
+      cell1 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1]) + 1}`)
+      cell2 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1]) + 2}`)
+
+      if (cell1.className.includes('notFree') || cell2.className.includes('notFree')) {
+        e.target.style.boxShadow = 'none';
+      } else {
+        tripleHide[tripleCounter].classList.remove('displayNone')
+        if (parseInt(id[1]) >= 8) {
+          setPos((prevPos) => [...prevPos, {type: 'triple', x: parseInt(id[0]), y: 7}]);
+          tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+          tripleHide[tripleCounter].style.left = `${(7 * 50) + 50}px`
+        } else {
+          setPos((prevPos) => [...prevPos, {type: 'triple', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1)}]);
+          tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+          tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+        }
+        console.log(pos)
+        setTriple(tripleCounter + 1)
+
+        let targetCell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+        targetCell.classList.add('notFree')
+
+        const targetID = e.dataTransfer.getData("tripleID")
+        let targetElement = document.getElementById(targetID)
+        targetElement.style.display = 'none'
+      }
     } else {
       tripleHide[tripleCounter].classList.remove('displayNone')
-      if (parseInt(id[1]) >= 8) {
-        setPos((prevPos) => [...prevPos, {type: 'triple', x: parseInt(id[0]), y: 7}]);
-
-        tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
-        tripleHide[tripleCounter].style.left = `${(7 * 50) + 50}px`
-      } else {
-        setPos((prevPos) => [...prevPos, {type: 'triple', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1)}]);
-
-        tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
-        tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
-      }
-      console.log(pos)
+      setPos((prevPos) => [...prevPos, {type: 'triple', x: parseInt(id[0]), y: 7}]);
+      tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+      tripleHide[tripleCounter].style.left = `${(7 * 50) + 50}px`
       setTriple(tripleCounter + 1)
 
-      let targetCell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+      let targetCell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])-1}`)
       targetCell.classList.add('notFree')
 
       const targetID = e.dataTransfer.getData("tripleID")
@@ -140,18 +165,30 @@ function YatchukAndrey(settings) {
       console.log('Неа')
       return
     }
-    
-    let cell11 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+1}`)
-    let cell12 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+2}`)
-    let cell13 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+3}`)
-    let cell20 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])}`)
-    let cell21 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])+1}`)
-    let cell22 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])+2}`)
-    let cell23 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])+3}`)
-    let cell30 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])}`)
-    let cell31 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])+1}`)
-    let cell32 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])+2}`)
-    let cell33 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])+3}`)
+    let cell11 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell12 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell13 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell20 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell21 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell22 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell23 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell30 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell31 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell32 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+    let cell33 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
+
+    if (parseInt(id[0]) >= 8) {
+      cell11 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+1}`)
+      cell12 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+2}`)
+      cell13 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+3}`)
+      cell20 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])}`)
+      cell21 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])+1}`)
+      cell22 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])+2}`)
+      cell23 = document.getElementById(`${parseInt(e.target.id[0])+1}${parseInt(e.target.id[1])+3}`)
+      cell30 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])}`)
+      cell31 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])+1}`)
+      cell32 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])+2}`)
+    }
 
     if (cell11.className.includes('notFree') ||
         cell12.className.includes('notFree') ||
@@ -166,8 +203,8 @@ function YatchukAndrey(settings) {
         cell33.className.includes('notFree')) {
       e.target.style.boxShadow = 'none';
     } else {
-
       ultimateHide[ultimateCounter].classList.remove('displayNone')
+
       if (parseInt(id[0]) >= 8) {
         ultimateHide[ultimateCounter].style.top = `${(7 * 50) + 50}px`
       } else {
@@ -246,25 +283,21 @@ function YatchukAndrey(settings) {
                 ))}
                 {rows.map((row, rowIndex) => (
                   <React.Fragment key={row}>
-
-                    <Positions.Provider value={pos}>
-                      <div draggable="false" className="cell cord" id={`L${rowIndex + 1}`}>{row}</div>
-                      {columns.map((col, colIndex) => (
-                        <div 
-                          key={`${rowIndex}${colIndex}`} 
-                          onDragOver={handleDragOver}
-                          onDragLeave={handleDragLeave}
-                          onDrop={handleDrop}
-                          className="hov cell" 
-                          id={`${rowIndex}${col}`}
-                        >
-                          {
-                            
-                          }
-                        </div>
-                      ))}
-                    </Positions.Provider>
-                    
+                    <div draggable="false" className="cell cord" id={`L${rowIndex + 1}`}>{row}</div>
+                    {columns.map((col, colIndex) => (
+                      <div 
+                        key={`${rowIndex}${colIndex}`} 
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onDrop={handleDrop}
+                        className="hov cell" 
+                        id={`${rowIndex}${col}`}
+                      >
+                        {
+                        
+                        }
+                      </div>
+                    ))}
                   </React.Fragment>
                 ))}
                 <div className='displayNone hide singlePlace ship'>
