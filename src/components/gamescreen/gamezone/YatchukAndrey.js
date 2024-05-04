@@ -5,8 +5,9 @@ import single from './img/spaceships/single.png'
 import double from './img/spaceships/double.png'
 import triple from './img/spaceships/tripple.png'
 import ultimate from './img/spaceships/ultimate.png'
-
 import start from "./img/Start.png"
+
+export const Positions = React.createContext()
 
 function YatchukAndrey(settings) {
   const ShipValue = React.useContext(Ship)
@@ -27,6 +28,9 @@ function YatchukAndrey(settings) {
 
   const makeFetch = (e) => {
     if (singleCounter + doubleCounter + tripleCounter + ultimateCounter === 10) {
+      e.dataTransfer.setData("pos", pos)
+      console.log(pos)
+      e.preventDefault()
       fetch('localhost:3001/')
     } else {
       alert("Низя")
@@ -136,6 +140,7 @@ function YatchukAndrey(settings) {
       console.log('Неа')
       return
     }
+    
     let cell11 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+1}`)
     let cell12 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+2}`)
     let cell13 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+3}`)
@@ -241,21 +246,25 @@ function YatchukAndrey(settings) {
                 ))}
                 {rows.map((row, rowIndex) => (
                   <React.Fragment key={row}>
-                    <div draggable="false" className="cell cord" id={`L${rowIndex + 1}`}>{row}</div>
-                    {columns.map((col, colIndex) => (
-                      <div 
-                        key={`${rowIndex}${colIndex}`} 
-                        onDragOver={handleDragOver}
-                        onDragLeave={handleDragLeave}
-                        onDrop={handleDrop}
-                        className="hov cell" 
-                        id={`${rowIndex}${col}`}
-                      >
-                        {
-                        
-                        }
-                      </div>
-                    ))}
+
+                    <Positions.Provider value={pos}>
+                      <div draggable="false" className="cell cord" id={`L${rowIndex + 1}`}>{row}</div>
+                      {columns.map((col, colIndex) => (
+                        <div 
+                          key={`${rowIndex}${colIndex}`} 
+                          onDragOver={handleDragOver}
+                          onDragLeave={handleDragLeave}
+                          onDrop={handleDrop}
+                          className="hov cell" 
+                          id={`${rowIndex}${col}`}
+                        >
+                          {
+                            
+                          }
+                        </div>
+                      ))}
+                    </Positions.Provider>
+                    
                   </React.Fragment>
                 ))}
                 <div className='displayNone hide singlePlace ship'>
