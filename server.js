@@ -63,7 +63,7 @@ const positions = {
 }
 
 let points = point.createPointsArr(positions)
-console.log(points)
+// console.log(points)
 const ableToHit = () => {
     positions.forEach(element => {
         switch(element.type) {
@@ -117,7 +117,12 @@ app.post('/connectToGame', (req, res) => {
     }
 });
 
+app.get('/getPositions', (req, res) => {
+    
+})
+
 app.get('/shoot', (req,res) => {
+    // 
     emitter.once('newMessage', (message) => {
         res.json(message)
     })
@@ -134,7 +139,7 @@ app.get('/api', (req, res) => {
 })
 
 app.post('/api', (req, res) => {
-
+    console.log(req.body)
 })
 
 app.listen(3001, () => {

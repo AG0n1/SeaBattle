@@ -27,7 +27,9 @@ function YatchukAndrey(settings) {
 
   const makeFetch = (e) => {
     if (singleCounter + doubleCounter + tripleCounter + ultimateCounter === 10) {
-      fetch('localhost:3001/')
+      fetch('http://localhost:3001/getPositions', {
+        
+      })
     } else {
 
     }
