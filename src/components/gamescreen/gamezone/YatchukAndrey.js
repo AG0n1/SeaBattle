@@ -178,7 +178,7 @@ function YatchukAndrey(settings) {
     let cell32 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
     let cell33 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
 
-    if (parseInt(id[0]) >= 8) {
+    if (parseInt(id[0]) > 8 && parseInt(id[1]) > 7) {
       cell11 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+1}`)
       cell12 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+2}`)
       cell13 = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])+3}`)
@@ -189,8 +189,28 @@ function YatchukAndrey(settings) {
       cell30 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])}`)
       cell31 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])+1}`)
       cell32 = document.getElementById(`${parseInt(e.target.id[0])+2}${parseInt(e.target.id[1])+2}`)
-    }
+    } else {
+      if (parseInt(id[0]) >= 8) {
+        ultimateHide[ultimateCounter].style.top = `${(7 * 50) + 50}px`
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: parseInt(id[1])}]);
+      } else {
+        ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: 8, y: parseInt(id[1])}]);
+      }
 
+      if (parseInt(id[1]) >= 7) {
+        ultimateHide[ultimateCounter].style.left = `${(6 * 50) + 50}px`
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: parseInt(id[1])}]);
+      } else {
+        ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: 6}]);
+      }
+      setUltimate(ultimateCounter + 1)
+
+      const targetID = e.dataTransfer.getData("ultimateID")
+      let targetElement = document.getElementById(targetID)
+      targetElement.style.display = 'none'
+    }
     if (cell11.className.includes('notFree') ||
         cell12.className.includes('notFree') ||
         cell13.className.includes('notFree') ||
@@ -208,14 +228,18 @@ function YatchukAndrey(settings) {
 
       if (parseInt(id[0]) >= 8) {
         ultimateHide[ultimateCounter].style.top = `${(7 * 50) + 50}px`
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: parseInt(id[1])}]);
       } else {
         ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: 8, y: parseInt(id[1])}]);
       }
 
       if (parseInt(id[1]) >= 7) {
         ultimateHide[ultimateCounter].style.left = `${(6 * 50) + 50}px`
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: parseInt(id[1])}]);
       } else {
         ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: 6}]);
       }
       setUltimate(ultimateCounter + 1)
 
