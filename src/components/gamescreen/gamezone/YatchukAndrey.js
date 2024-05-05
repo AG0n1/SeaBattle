@@ -29,8 +29,7 @@ function YatchukAndrey(settings) {
     if (singleCounter + doubleCounter + tripleCounter + ultimateCounter === 10) {
       fetch('localhost:3001/')
     } else {
-      alert("Низя")
-      e.preventDefault()
+
     }
   }
 
@@ -340,7 +339,7 @@ function YatchukAndrey(settings) {
                       <img src={start} className="linkToPlayImg" />
                   </Link>
               </div>
-            </div>      
+    </div>      
   );
 }
 

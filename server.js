@@ -29,7 +29,9 @@ app.post('/connectToGame', (req, res) => {
     const game = games[gameId];
     if (game) {
         console.log('Game found:', game);
-        // Здесь можете делать что-то с найденной игрой
+        res.json({isFind: true})
+
+        games[gameId].name2 = name
     } else {
         res.json({isFind: false})
     }
