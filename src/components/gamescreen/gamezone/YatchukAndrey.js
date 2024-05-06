@@ -49,7 +49,7 @@ function YatchukAndrey(settings) {
       return
     }
 
-    setPos((prevPos) => [...prevPos, { type: 'single', x: id[0], y: id[1] }]);
+    setPos((prevPos) => [...prevPos, { type: 'single', x: parseInt(id[0]), y: parseInt(id[1])}]);
  
     singleHide[singleCounter].classList.remove('displayNone')
     singleHide[singleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
@@ -127,7 +127,7 @@ function YatchukAndrey(settings) {
       } else {
         tripleHide[tripleCounter].classList.remove('displayNone')
         if (parseInt(id[1]) >= 8) {
-          setPos((prevPos) => [...prevPos, {type: 'triple', x: parseInt(id[0]), y: 7}]);
+          setPos((prevPos) => [...prevPos, {type: 'triple', x: parseInt(id[0]), y: parseInt('7')}]);
           tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
           tripleHide[tripleCounter].style.left = `${(7 * 50) + 50}px`
         } else {
@@ -147,7 +147,7 @@ function YatchukAndrey(settings) {
       }
     } else {
       tripleHide[tripleCounter].classList.remove('displayNone')
-      setPos((prevPos) => [...prevPos, {type: 'triple', x: parseInt(id[0]), y: 7}]);
+      setPos((prevPos) => [...prevPos, {type: 'triple', x: parseInt(id[0]), y: parseInt('7')}]);
       tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
       tripleHide[tripleCounter].style.left = `${(7 * 50) + 50}px`
       setTriple(tripleCounter + 1)
