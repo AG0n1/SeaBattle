@@ -6,7 +6,8 @@ import single from "./gamezone/img/spaceships/single.png";
 import double from "./gamezone/img/spaceships/double.png";
 import triple from "./gamezone/img/spaceships/tripple.png";
 import ultimate from "./gamezone/img/spaceships/ultimate.png";
-import React from "react";
+import { shipData } from "./gamezone/YatchukAndrey";
+import React, {useState} from "react";
 
 function IvanEpisko() {
 
@@ -15,7 +16,42 @@ function IvanEpisko() {
     let tripleHide = document.getElementsByClassName('triplePlace')
     let ultimateHide = document.getElementsByClassName('ultimatePlace')
 
+    const [singleCounter, setSingle] = useState(0)
+    const [doubleCounter, setDouble] = useState(0)
+    const [tripleCounter, setTriple] = useState(0)
+    const [ultimateCounter, setUltimate] = useState(0)
 
+    // shipData.forEach((ship) => {
+    //     const {type, x, y} = ship;
+    //     switch (type) {
+    //         case 'single':
+    //             singleHide[singleCounter].classList.remove('displayNone')
+    //             singleHide[singleCounter].style.top = `${(parseInt(x) * 50) + 50}px`
+    //             singleHide[singleCounter].style.left = `${(parseInt(y) * 50) + 50}px`
+    //             setSingle(singleCounter + 1)
+    //             break;
+    //         case 'double':
+    //             doubleHide[doubleCounter].classList.remove('displayNone')
+    //             doubleHide[doubleCounter].style.top = `${(parseInt(x) * 50) + 50}px`
+    //             doubleHide[doubleCounter].style.left = `${(parseInt(y) * 50) + 50}px`
+    //             setDouble(doubleCounter + 1)
+    //             break;
+    //         case 'triple':
+    //             tripleHide[tripleCounter].classList.remove('displayNone')
+    //             tripleHide[tripleCounter].style.top = `${(parseInt(x) * 50) + 50}px`
+    //             tripleHide[tripleCounter].style.left = `${(parseInt(y) * 50) + 50}px`
+    //             setTriple(tripleCounter + 1)
+    //             break;
+    //         case 'ultimate':
+    //             ultimateHide[ultimateCounter].classList.remove('displayNone')
+    //             ultimateHide[ultimateCounter].style.top = `${(parseInt(x) * 50) + 50}px`
+    //             ultimateHide[ultimateCounter].style.left = `${(parseInt(y) * 50) + 50}px`
+    //             setUltimate(ultimateCounter + 1)
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // })
 
     return (
         <div className="playy">
