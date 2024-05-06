@@ -21,7 +21,7 @@ class Point {
 
     createPointsArr(positions) {
         for (const key in positions) {
-            if (Object.hasOwnProperty.call(positions, key)) {
+            if (Object.hasOwnProperty.call(positions, key) && key !== "name" && key !== "gameId") {
                 const { type, x, y } = positions[key];
                 if (type === 'double') {
                     this.pointsArr.push({ x: Number(x), y: Number(y) });
@@ -43,6 +43,7 @@ class Point {
                 }
             }
         }
+        
         return this.pointsArr;
     }
 }
@@ -84,7 +85,7 @@ let games = {
 }
 
 app.post('/createGame', (req, res) => {
-    console.log(req.body)
+
     let {gameId} = req.body,
         {name} = req.body
     games[gameId] = {
@@ -117,7 +118,15 @@ app.post('/connectToGame', (req, res) => {
     }
 });
 
-app.get('/getPositions', (req, res) => {
+app.post('/getPositions', (req, res) => {
+    let positions = req.body,
+        {name} = req.body,
+        gameId = req.body
+    
+    console.log(point.createPointsArr(positions))
+    console.log(name)
+    console.log(gameId)
+
     
 })
 

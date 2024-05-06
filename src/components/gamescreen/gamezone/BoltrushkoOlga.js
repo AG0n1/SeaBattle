@@ -13,6 +13,17 @@ function BoltrushkoOlga() {
     return res;
   };
   
+  const check = (id) => {
+    fetch('http://localhost:3001/shoot', {
+      method: 'POST',
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}` 
+      },
+      body: JSON.stringify({ id: id })
+    })
+  }
+
   return (
     <div className="gamezone" id="enemyPlayer">
       <div className="cell"></div>
@@ -28,12 +39,16 @@ function BoltrushkoOlga() {
             <div
               key={`${row}${col}`}
               style={{
-                background: `url(${logoArr[Math.floor(Math.random() * 3)]})`,
+                background: `rgb(0,0,0,0)`,
               }}
               
+              onClick={check}
+
               className="cell hov"
               id={`${row}${col}`}
-            ></div>
+            >
+
+            </div>
           ))}
         </React.Fragment>
       ))}
