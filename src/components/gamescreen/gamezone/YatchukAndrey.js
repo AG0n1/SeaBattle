@@ -30,12 +30,33 @@ export function YatchukAndrey(settings) {
   let ultimateHide = document.getElementsByClassName('ultimatePlace')
 
   const makeFetch = (e) => {
-    if (singleCounter + doubleCounter + tripleCounter + ultimateCounter === 10) {
+      
+      e.dataTransfer.setData("positions", {
+        x: 100, y: 100
+      });
       fetch('http://localhost:3001/getPositions', {
-      })
-    } else {
 
-    }
+          method: 'POST',
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${localStorage.getItem('token')}` 
+          },
+          body: JSON.stringify({
+            0: {type: 'double', x: 2, y: 8},
+            1: {type: 'single', x: '1', y: '8'},
+            2: {type: 'single', x: '0', y: '8'},
+            3: {type: 'single', x: '1', y: '9'},
+            4: {type: 'single', x: '0', y: '9'},
+            5: {type: 'double', x: 5, y: 5},
+            6: {type: 'double', x: 3, y: 5},
+            7: {type: 'triple', x: 5, y: 1},
+            8: {type: 'triple', x: 5, y: 1},
+            9: {type: 'ultimate', x: 5, y: 1},
+            name: localStorage.getItem("name"),
+            gameId: localStorage.getItem("gameId")
+        })
+      })
+
   }
 
   const handleDragOver = (e) => {

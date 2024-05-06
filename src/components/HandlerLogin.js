@@ -45,6 +45,7 @@ function HandlerLogin() {
             e.preventDefault()
             setDisplayAlert("flex")
         } else {
+            
             localStorage.setItem("name", nameInput.value)
             switch (createOrConnect) {
                 case 'create':
@@ -67,6 +68,7 @@ function HandlerLogin() {
                 case 'connect':
                     console.log(111)
                     let val = document.getElementById('getVal')
+                    
                     fetch('http://localhost:3001/connectToGame', {
                         method: 'POST',
                         headers: {
@@ -82,6 +84,7 @@ function HandlerLogin() {
                             e.preventDefault();
                             alert('Game was not found!')
                         } else {
+                            localStorage.setItem("gameId", val.value)
                             console.log(data.isFind)
                             navigate('/setShips')
                         }
@@ -119,7 +122,6 @@ function HandlerLogin() {
                 <img src={login} className="Login"/>
             </div>
             <input placeholder="Введите Ваше имя" type="text" className="inp" id="nameInput" required/>
-
 
             <button className="btn reateGame" onClick={openCreate}>Создать игру</button>
             <button className="btn joinGame" onClick={openConnect}>Подключиться к существующей игре</button>

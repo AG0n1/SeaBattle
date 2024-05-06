@@ -10,7 +10,6 @@ import { shipData } from "./gamezone/YatchukAndrey";
 import React, {useState} from "react";
 
 function IvanEpisko() {
-
     let singleHide = document.getElementsByClassName('singlePlace')
     let doubleHide = document.getElementsByClassName('doublePlace')
     let tripleHide = document.getElementsByClassName('triplePlace')
@@ -53,12 +52,14 @@ function IvanEpisko() {
     //     }
     // })
 
+
     return (
         <div className="playy">
             <div className="ivanEpishko">
                 <YatchukAndrey display="none"/>
                 <BoltrushkoOlga/>
             </div>
+            <button onClick={start} >play</button>
 
             <div className='displayNone hide singlePlace ship'>
                 <img src={single}/>

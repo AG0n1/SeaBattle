@@ -21,7 +21,7 @@ class Point {
 
     createPointsArr(positions) {
         for (const key in positions) {
-            if (Object.hasOwnProperty.call(positions, key)) {
+            if (Object.hasOwnProperty.call(positions, key) && key !== "name" && key !== "gameId") {
                 const { type, x, y } = positions[key];
                 if (type === 'double') {
                     this.pointsArr.push({ x: Number(x), y: Number(y) });
@@ -43,26 +43,27 @@ class Point {
                 }
             }
         }
+        
         return this.pointsArr;
     }
 }
 
 const point = new Point
 
-const positions = {
-    0: {type: 'double', x: 2, y: 8},
-    1: {type: 'single', x: '1', y: '8'},
-    2: {type: 'single', x: '0', y: '8'},
-    3: {type: 'single', x: '1', y: '9'},
-    4: {type: 'single', x: '0', y: '9'},
-    5: {type: 'double', x: 5, y: 5},
-    6: {type: 'double', x: 3, y: 5},
-    7: {type: 'triple', x: 5, y: 1},
-    8: {type: 'triple', x: 5, y: 1},
-    9: {type: 'ultimate', x: 5, y: 1},
-}
+// const positions = {
+//     0: {type: 'double', x: 2, y: 8},
+//     1: {type: 'single', x: '1', y: '8'},
+//     2: {type: 'single', x: '0', y: '8'},
+//     3: {type: 'single', x: '1', y: '9'},
+//     4: {type: 'single', x: '0', y: '9'},
+//     5: {type: 'double', x: 5, y: 5},
+//     6: {type: 'double', x: 3, y: 5},
+//     7: {type: 'triple', x: 5, y: 1},
+//     8: {type: 'triple', x: 5, y: 1},
+//     9: {type: 'ultimate', x: 5, y: 1},
+// }
 
-let points = point.createPointsArr(positions)
+// let points = point.createPointsArr(positions)
 // console.log(points)
 const ableToHit = () => {
     positions.forEach(element => {
@@ -84,7 +85,7 @@ let games = {
 }
 
 app.post('/createGame', (req, res) => {
-    console.log(req.body)
+
     let {gameId} = req.body,
         {name} = req.body
     games[gameId] = {
@@ -103,7 +104,7 @@ app.post('/connectToGame', (req, res) => {
 
     const game = games[gameId];
     if (game) {
-        console.log('Game found:', game);
+        console.log('Game found:');
         res.json({isFind: true})
 
         games[gameId][name] = {
@@ -117,12 +118,25 @@ app.post('/connectToGame', (req, res) => {
     }
 });
 
-app.get('/getPositions', (req, res) => {
-    
+app.post('/getPositions', (req, res) => {
+    let positions = req.body,
+        {name} = req.body,
+        {gameId} = req.body
+    console.log("1)", gameId)
+    console.log("2)", name)
+    console.log(games[gameId])
+    games[gameId][name].pos = point.createPointsArr(positions)
 })
 
 app.get('/shoot', (req,res) => {
-    // 
+    let {id} = req.body,
+        splitedId = {
+            x: Number(id[0]),
+            y: Number(id[1])
+        }
+
+    games
+    
     emitter.once('newMessage', (message) => {
         res.json(message)
     })
@@ -135,31 +149,31 @@ app.post('/step', (req, res) => {
 })
 
 app.get('/api', (req, res) => {
-    res.json(points)
+    res.json(games)
 })
 
 app.post('/api', (req, res) => {
     console.log(req.body)
 })
 
-app.listen(3001, () => {
-    console.log("Сервер работает на 3001")
-})
+// app.listen(3001, () => {
+//     console.log("Сервер работает на 3001")
+// })
 
-// app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
-// const port = process.env.PORT || 3001;
-// server.listen(port, async () => {
-//     console.log(`Сервер запущен на порте ${port}`);
+const port = process.env.PORT || 3001;
+server.listen(port, async () => {
+    console.log(`Сервер запущен на порте ${port}`);
 
-//     const tunnel = await localtunnel({ port });
-//     console.log(`Проект доступен по ссылке: ${tunnel.url}`);
+    const tunnel = await localtunnel({ port });
+    console.log(`Проект доступен по ссылке: ${tunnel.url}`);
 
-//     server.on('close', () => {
-//         tunnel.close();
-//     });
-// });
+    server.on('close', () => {
+        tunnel.close();
+    });
+});
