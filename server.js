@@ -129,7 +129,14 @@ app.post('/getPositions', (req, res) => {
 })
 
 app.get('/shoot', (req,res) => {
-    // 
+    let {id} = req.body,
+        splitedId = {
+            x: Number(id[0]),
+            y: Number(id[1])
+        }
+
+    games
+    
     emitter.once('newMessage', (message) => {
         res.json(message)
     })

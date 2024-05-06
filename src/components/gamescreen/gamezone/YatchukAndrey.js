@@ -26,7 +26,10 @@ function YatchukAndrey(settings) {
   let ultimateHide = document.getElementsByClassName('ultimatePlace')
 
   const makeFetch = (e) => {
-      console.log(111)
+      
+      e.dataTransfer.setData("positions", {
+        x: 100, y: 100
+      });
       fetch('http://localhost:3001/getPositions', {
           method: 'POST',
           headers: {

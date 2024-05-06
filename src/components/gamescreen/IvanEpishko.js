@@ -9,13 +9,15 @@ import ultimate from "./gamezone/img/spaceships/ultimate.png";
 import React from "react";
 
 function IvanEpisko() {
-
     let singleHide = document.getElementsByClassName('singlePlace')
     let doubleHide = document.getElementsByClassName('doublePlace')
     let tripleHide = document.getElementsByClassName('triplePlace')
     let ultimateHide = document.getElementsByClassName('ultimatePlace')
-
-
+    const start = (e) => {
+        let arr = e.dataTransfer.getData("positions")
+        let pos = JSON.parse(arr)
+        console.log(pos)
+    }
 
     return (
         <div className="playy">
@@ -23,6 +25,7 @@ function IvanEpisko() {
                 <YatchukAndrey display="none"/>
                 <BoltrushkoOlga/>
             </div>
+            <button onClick={start} >play</button>
 
             <div className='displayNone hide singlePlace ship'>
                 <img src={single}/>
