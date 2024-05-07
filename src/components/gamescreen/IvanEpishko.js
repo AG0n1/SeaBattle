@@ -59,8 +59,6 @@ function IvanEpisko() {
                 <YatchukAndrey display="none"/>
                 <BoltrushkoOlga/>
             </div>
-            <button onClick={start} >play</button>
-
             <div className='displayNone hide singlePlace ship'>
                 <img src={single}/>
             </div>

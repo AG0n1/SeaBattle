@@ -4,10 +4,8 @@ import login from "./gamescreen/gamezone/img/Login.png"
 import start from "./gamescreen/gamezone/img/Start.png"
 import { useNavigate } from 'react-router-dom';
 
-
-
 function HandlerLogin() {
-    const apiURL = 'http://46.56.192.83:3001';
+    const apiURL = 'http://localhost:3001';
     const [displayCreate, setDisplayCreate] = useState("none")
     const [displayConnect, setDisplayConnect] = useState("none")
     const [displayAlert, setDisplayAlert] = useState("none")
