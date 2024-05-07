@@ -5,17 +5,22 @@ import single from './img/spaceships/single.png'
 import double from './img/spaceships/double.png'
 import triple from './img/spaceships/tripple.png'
 import ultimate from './img/spaceships/ultimate.png'
-
 import start from "./img/Start.png"
 
 function YatchukAndrey(settings) {
   
   const apiURL = 'http://46.56.192.83:3001/api'; 
+
   const ShipValue = React.useContext(Ship)
   const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
   const columns = Array.from({ length: 10 }, (_, index) => index);
   const [showBox, setShowBox] = useState(false);
   const [pos, setPos] = useState([]);
+
+  const [shipData, setShipData] = useState([]);
+  const addShip = (type, x, y) => {
+    setShipData([...shipData, { type, x, y }]);
+  }
 
   const [singleCounter, setSingle] = useState(0)
   const [doubleCounter, setDouble] = useState(0)
@@ -32,7 +37,8 @@ function YatchukAndrey(settings) {
       e.dataTransfer.setData("positions", {
         x: 100, y: 100
       });
-      fetch('http://46.56.192.83:3001/getPositions', {
+      fetch('http://localhost:3001/getPositions', {
+
           method: 'POST',
           headers: {
               "Content-Type": "application/json",
@@ -69,8 +75,8 @@ function YatchukAndrey(settings) {
     if (singleCounter === 4) {
       return
     }
-
     setPos((prevPos) => [...prevPos, { type: 'single', x: parseInt(id[0]), y: parseInt(id[1])}]);
+    addShip( 'single', parseInt(id[0]), parseInt(id[1]))
  
     singleHide[singleCounter].classList.remove('displayNone')
     singleHide[singleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
@@ -99,10 +105,12 @@ function YatchukAndrey(settings) {
         doubleHide[doubleCounter].classList.remove('displayNone')
         if (id[1] !== "9") {
           setPos((prevPos) => [...prevPos, {type: 'double', x: parseInt(id[0]), y: parseInt(id[1])}]);
+          addShip( 'double', parseInt(id[0]), parseInt(id[1]))
           doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
           doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
         } else {
           setPos((prevPos) => [...prevPos, {type: 'double', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1)}]);
+          addShip( 'double', parseInt(id[0]), (parseInt(id[1]) - 1))
           doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
           doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50)}px`
         }
@@ -118,6 +126,8 @@ function YatchukAndrey(settings) {
     } else {
       doubleHide[doubleCounter].classList.remove('displayNone')
       setPos((prevPos) => [...prevPos, {type: 'double', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1)}]);
+      addShip( 'double', parseInt(id[0]), (parseInt(id[1]) - 1))
+
       doubleHide[doubleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
       doubleHide[doubleCounter].style.left = `${(parseInt(id[1]) * 50)}px`
       setDouble(doubleCounter + 1)
@@ -149,14 +159,15 @@ function YatchukAndrey(settings) {
         tripleHide[tripleCounter].classList.remove('displayNone')
         if (parseInt(id[1]) >= 8) {
           setPos((prevPos) => [...prevPos, {type: 'triple', x: parseInt(id[0]), y: parseInt('7')}]);
+          addShip( 'triple', parseInt(id[0]), parseInt('7'))
           tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
           tripleHide[tripleCounter].style.left = `${(7 * 50) + 50}px`
         } else {
           setPos((prevPos) => [...prevPos, {type: 'triple', x: (parseInt(id[0])), y: (parseInt(id[1]) - 1)}]);
+          addShip( 'triple', parseInt(id[0]), (parseInt(id[1]) - 1))
           tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
           tripleHide[tripleCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
         }
-        console.log(pos)
         setTriple(tripleCounter + 1)
 
         let targetCell = document.getElementById(`${parseInt(e.target.id[0])}${parseInt(e.target.id[1])}`)
@@ -169,6 +180,7 @@ function YatchukAndrey(settings) {
     } else {
       tripleHide[tripleCounter].classList.remove('displayNone')
       setPos((prevPos) => [...prevPos, {type: 'triple', x: parseInt(id[0]), y: parseInt('7')}]);
+      addShip( 'triple', parseInt(id[0]), parseInt('7'))
       tripleHide[tripleCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
       tripleHide[tripleCounter].style.left = `${(7 * 50) + 50}px`
       setTriple(tripleCounter + 1)
@@ -214,17 +226,20 @@ function YatchukAndrey(settings) {
       if (parseInt(id[0]) >= 8) {
         ultimateHide[ultimateCounter].style.top = `${(7 * 50) + 50}px`
         setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: parseInt(id[1])}]);
+        addShip( 'ultimate', parseInt(id[0]), parseInt(id[1]))
       } else {
         ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
-        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: 8, y: parseInt(id[1])}]);
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt('8'), y: parseInt(id[1])}]);
+        addShip( 'ultimate', parseInt('8'), parseInt(id[1]))
       }
-
       if (parseInt(id[1]) >= 7) {
         ultimateHide[ultimateCounter].style.left = `${(6 * 50) + 50}px`
         setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: parseInt(id[1])}]);
+        addShip( 'ultimate', parseInt(id[0]), parseInt(id[1]))
       } else {
         ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
-        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: 6}]);
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: parseInt('6')}]);
+        addShip( 'ultimate', parseInt(id[0]), parseInt('6'))
       }
       setUltimate(ultimateCounter + 1)
 
@@ -250,17 +265,20 @@ function YatchukAndrey(settings) {
       if (parseInt(id[0]) >= 8) {
         ultimateHide[ultimateCounter].style.top = `${(7 * 50) + 50}px`
         setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: parseInt(id[1])}]);
+        addShip( 'ultimate', parseInt(id[0]), parseInt(id[1]))
       } else {
         ultimateHide[ultimateCounter].style.top = `${(parseInt(id[0]) * 50) + 50}px`
-        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: 8, y: parseInt(id[1])}]);
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt('8'), y: parseInt(id[1])}]);
+        addShip( 'ultimate', parseInt('8'), parseInt(id[1]))
       }
-
       if (parseInt(id[1]) >= 7) {
         ultimateHide[ultimateCounter].style.left = `${(6 * 50) + 50}px`
         setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: parseInt(id[1])}]);
+        addShip( 'ultimate', parseInt(id[0]), parseInt(id[1]))
       } else {
         ultimateHide[ultimateCounter].style.left = `${(parseInt(id[1]) * 50) + 50}px`
-        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: 6}]);
+        setPos((prevPos) => [...prevPos, {type: 'ultimate', x: parseInt(id[0]), y: parseInt('6')}]);
+        addShip( 'ultimate', parseInt(id[0]), parseInt('6'))
       }
       setUltimate(ultimateCounter + 1)
 
@@ -288,7 +306,6 @@ function YatchukAndrey(settings) {
     const imgElement = document.createElement("img");
     imgElement.className = shipType;
 
-
     let numberCell = document.getElementById(`N${e.target.id[1]}`)
     numberCell.style.backgroundColor = '#f5da70'
     let letterCell = document.getElementById(`L${parseInt(e.target.id[0]) + 1}`)
@@ -315,8 +332,7 @@ function YatchukAndrey(settings) {
   
   return (
     <div className="makeSpace">
-            <div 
-                
+            <div
                 className="gamezone"
                 id="currentPlayer"
               >
