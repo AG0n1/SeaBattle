@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 function HandlerLogin() {
+    const apiURL = 'http://46.56.192.83:3001';
     const [displayCreate, setDisplayCreate] = useState("none")
     const [displayConnect, setDisplayConnect] = useState("none")
     const [displayAlert, setDisplayAlert] = useState("none")
@@ -51,7 +52,7 @@ function HandlerLogin() {
                 case 'create':
                     try {
                         localStorage.setItem("gameId", gameId.toString())
-                        fetch('http://localhost:3001/createGame', {
+                        fetch(`${apiURL}/createGame`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -69,7 +70,7 @@ function HandlerLogin() {
                     console.log(111)
                     let val = document.getElementById('getVal')
                     
-                    fetch('http://localhost:3001/connectToGame', {
+                    fetch(`${apiURL}/connectToGame`, {
                         method: 'POST',
                         headers: {
                             "Content-Type": "application/json",

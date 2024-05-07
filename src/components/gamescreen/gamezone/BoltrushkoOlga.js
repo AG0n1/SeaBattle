@@ -13,8 +13,16 @@ function BoltrushkoOlga() {
       },
       body: JSON.stringify({ id: id })
     })
+    .then(res => res.json())
+    .then(data => {
+      if (data.isHitted) {
+        alert("Попал")
+      } else {
+        alert("Не попал")
+      }
+    })
   }
-
+  
   return (
     <div className="gamezone" id="enemyPlayer">
       <div className="cell"></div>

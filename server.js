@@ -1,16 +1,21 @@
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const http = require('http');
 const path = require('path');
-const events = require('events')
+const events = require('events');
 const localtunnel = require('localtunnel');
 
-const emitter = events.EventEmitter()
+const emitter = events.EventEmitter();
 
 const app = express();
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 const server = http.createServer(app);
+
+app.use((req, res, next) => {
+    console.log(`User connected: ${req.method} ${req.url}`);
+    next();
+});
 
 class Point {
     constructor(x, y) {
@@ -48,117 +53,62 @@ class Point {
     }
 }
 
-const point = new Point
+const point = new Point();
 
-// const positions = {
-//     0: {type: 'double', x: 2, y: 8},
-//     1: {type: 'single', x: '1', y: '8'},
-//     2: {type: 'single', x: '0', y: '8'},
-//     3: {type: 'single', x: '1', y: '9'},
-//     4: {type: 'single', x: '0', y: '9'},
-//     5: {type: 'double', x: 5, y: 5},
-//     6: {type: 'double', x: 3, y: 5},
-//     7: {type: 'triple', x: 5, y: 1},
-//     8: {type: 'triple', x: 5, y: 1},
-//     9: {type: 'ultimate', x: 5, y: 1},
-// }
-
-// let points = point.createPointsArr(positions)
-// console.log(points)
-const ableToHit = () => {
-    positions.forEach(element => {
-        switch(element.type) {
-            case "double":
-                break;
-            
-            case "tripple":
-                break;
-            
-            case "ultimate":
-                break;
-        }
-    });
-}
-
-let games = {
-    
-}
+let games = {};
 
 app.post('/createGame', (req, res) => {
-
-    let {gameId} = req.body,
-        {name} = req.body
+    let { gameId } = req.body,
+        { name } = req.body;
     games[gameId] = {
         [name]: {
             isReady: false,
-            pos: {
-                
-            }
+            pos: {}
         }
-    }
-})
+    };
+    res.send(`Game created with ID: ${gameId}`);
+});
 
 app.post('/connectToGame', (req, res) => {
-    let { gameId } = req.body,
-        { name } = req.body;
-
-    const game = games[gameId];
-    if (game) {
-        console.log('Game found:');
-        res.json({isFind: true})
-
+    let { gameId, name } = req.body;
+    if (games[gameId]) {
+        console.log('Game found:', games[gameId]);
         games[gameId][name] = {
             isReady: false,
-            pos: {
-                
-            }
-        }
+            pos: {}
+        };
+        res.json({ isFind: true, gameData: games[gameId] });
     } else {
-        res.json({isFind: false})
+        res.json({ isFind: false, message: 'Game not found' });
     }
 });
 
 app.post('/getPositions', (req, res) => {
-    let positions = req.body,
-        {name} = req.body,
-        {gameId} = req.body
-    console.log("1)", gameId)
-    console.log("2)", name)
-    console.log(games[gameId])
-    games[gameId][name].pos = point.createPointsArr(positions)
-})
+    let { gameId, name, positions } = req.body;
+    games[gameId][name].pos = point.createPointsArr(positions);
+    res.json({ message: 'Positions updated successfully', gameData: games[gameId] });
+});
 
-app.get('/shoot', (req,res) => {
-    let {id} = req.body,
-        splitedId = {
-            x: Number(id[0]),
-            y: Number(id[1])
-        }
-
-    games
-    
+app.get('/shoot', (req, res) => {
+    let { id } = req.query;
     emitter.once('newMessage', (message) => {
-        res.json(message)
-    })
-})
+        res.json(message);
+    });
+});
 
 app.post('/step', (req, res) => {
-    const msg = req.body
-    emitter.emit('newMessage', )
-    res.status(200)
-})
+    const msg = req.body;
+    emitter.emit('newMessage', msg);
+    res.status(200).json({ message: 'Step executed successfully' });
+});
 
 app.get('/api', (req, res) => {
-    res.json(games)
-})
+    res.json(games);
+});
 
 app.post('/api', (req, res) => {
-    console.log(req.body)
-})
-
-// app.listen(3001, () => {
-//     console.log("Сервер работает на 3001")
-// })
+    console.log(req.body);
+});
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -166,12 +116,12 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 80;
 server.listen(port, async () => {
-    console.log(`Сервер запущен на порте ${port}`);
+    console.log(`Server running on port ${port}`);
 
     const tunnel = await localtunnel({ port });
-    console.log(`Проект доступен по ссылке: ${tunnel.url}`);
+    console.log(`Project is accessible at: ${tunnel.url}`);
 
     server.on('close', () => {
         tunnel.close();

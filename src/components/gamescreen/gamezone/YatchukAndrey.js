@@ -9,6 +9,8 @@ import ultimate from './img/spaceships/ultimate.png'
 import start from "./img/Start.png"
 
 function YatchukAndrey(settings) {
+  
+  const apiURL = 'http://46.56.192.83:3001/api'; 
   const ShipValue = React.useContext(Ship)
   const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
   const columns = Array.from({ length: 10 }, (_, index) => index);
@@ -30,7 +32,7 @@ function YatchukAndrey(settings) {
       e.dataTransfer.setData("positions", {
         x: 100, y: 100
       });
-      fetch('http://localhost:3001/getPositions', {
+      fetch('http://46.56.192.83:3001/getPositions', {
           method: 'POST',
           headers: {
               "Content-Type": "application/json",
