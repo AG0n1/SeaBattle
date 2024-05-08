@@ -112,22 +112,22 @@ app.post('/api', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.listen(3001, () => {
-    console.log("server is running on port 3001")
-})
+// app.listen(3001, () => {
+//     console.log("server is running on port 3001")
+// })
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
-// const port = process.env.PORT || 3001;
-// server.listen(port, async () => {
-//     console.log(`Server running on port ${port}`);
+const port = process.env.PORT || 3001;
+server.listen(port, async () => {
+    console.log(`Server running on port ${port}`);
 
-//     const tunnel = await localtunnel({ port });
-//     console.log(`Project is accessible at: ${tunnel.url}`);
+    const tunnel = await localtunnel({ port });
+    console.log(`Project is accessible at: ${tunnel.url}`);
 
-//     server.on('close', () => {
-//         tunnel.close();
-//     });
-// });
+    server.on('close', () => {
+        tunnel.close();
+    });
+});
