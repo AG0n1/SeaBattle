@@ -13,6 +13,7 @@ function HandlerLogin() {
     const [copied, setCopied] = useState(false);
     const [createOrConnect, setCreate] = useState('')
     const navigate = useNavigate()
+    
     function generateGameId() {
         const symbols = ['1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','g','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
         let gameId = "";
