@@ -8,8 +8,12 @@ import triple from "./gamezone/img/spaceships/tripple.png";
 import ultimate from "./gamezone/img/spaceships/ultimate.png";
 import { shipData } from "./gamezone/YatchukAndrey";
 import React, {useState} from "react";
+import UserContext from "../Context";
 
 function IvanEpisko() {
+    const ContextType = UserContext
+    console.log(ContextType.Consumer)
+
     let singleHide = document.getElementsByClassName('singlePlace')
     let doubleHide = document.getElementsByClassName('doublePlace')
     let tripleHide = document.getElementsByClassName('triplePlace')

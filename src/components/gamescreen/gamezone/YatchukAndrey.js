@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Ship } from './dishwashers/YadlovskayaYulia';
 import single from './img/spaceships/single.png'
@@ -6,9 +6,10 @@ import double from './img/spaceships/double.png'
 import triple from './img/spaceships/tripple.png'
 import ultimate from './img/spaceships/ultimate.png'
 import start from "./img/Start.png"
+import UserContext from '../../Context';
 
 function YatchukAndrey(settings) {
-  
+  const {setData} = useContext(UserContext)
   const apiURL = 'http://46.56.192.83:3001/api'; 
 
   const ShipValue = React.useContext(Ship)
@@ -37,6 +38,20 @@ function YatchukAndrey(settings) {
       e.dataTransfer.setData("positions", {
         x: 100, y: 100
       });
+      setData({
+        0: {type: 'double', x: 2, y: 8},
+            1: {type: 'single', x: '1', y: '8'},
+            2: {type: 'single', x: '0', y: '8'},
+            3: {type: 'single', x: '1', y: '9'},
+            4: {type: 'single', x: '0', y: '9'},
+            5: {type: 'double', x: 5, y: 5},
+            6: {type: 'double', x: 3, y: 5},
+            7: {type: 'triple', x: 5, y: 1},
+            8: {type: 'triple', x: 5, y: 1},
+            9: {type: 'ultimate', x: 5, y: 1},
+            name: localStorage.getItem("name"),
+            gameId: localStorage.getItem("gameId")
+      })
       fetch('http://localhost:3001/getPositions', {
 
           method: 'POST',
